@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use or discuss this framework, please cite it as below."
+type: report
+title: "The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity"
+version: "0.3.2"
+date-released: "2026-10-02"
+authors:
+  - family-names: "Carrasco"
+    given-names: "Javier"
+    alias: "Saka"
+repository-code: "https://github.com/CarrascoOlmedoDevs/saka-law"
+abstract: >-
+  A falsifiable forecasting hypothesis and measurement framework for recursive
+  technological acceleration: when technology materially improves the process by
+  which new technology is discovered, validated and deployed, the growth rate of
+  technological progress can itself increase. The framework operationalizes this
+  across AI, compute, energy, laboratory automation, biotechnology, data, space,
+  manufacturing and clinical translation, with dated quantitative predictions and
+  a preregistered calibration protocol. Conceptual paper, not peer reviewed.
+keywords:
+  - technological forecasting
+  - recursive acceleration
+  - research productivity
+  - idea production function
+  - artificial intelligence
+  - longevity escape velocity
+  - preregistration

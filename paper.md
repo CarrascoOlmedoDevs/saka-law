@@ -1,7 +1,7 @@
 # The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity
 
 **Javier Carrasco ("Saka")**  
-Version 0.3.1 — 26 September 2026  
+Version 0.3.2 — 2 October 2026  
 Conceptual / forecasting paper — not peer reviewed
 
 ## Abstract
@@ -24,7 +24,7 @@ Between the mid-1980s and the mid-2020s, computing, genomic measurement, communi
 
 In 2026 several signals motivate examining this possibility. Frontier AI training compute continues to rise rapidly; algorithmic efficiency is improving; the stock of AI compute is expanding; autonomous task horizons are being measured over progressively longer tasks; self-driving laboratories are evolving from narrow automation toward systems that can propose, execute and interpret experiments; and AI systems are beginning to contribute to frontier mathematical research.
 
-For example, on 8 September 2026 OpenAI published an AI-generated proof of finite-time blowup (singularity formation) for the three-dimensional Navier–Stokes equations, addressing the Millennium Prize Problem, together with a Lean formalization [1, 2]. At the time of writing, human experts still need to confirm that the formalized statement is equivalent to the problem as posed, and the result has not been accepted by the Clay Mathematics Institute. It is best treated as evidence of a new research-capability regime, not as proof that all scientific problems can now be rapidly solved.
+For example, on 8 September 2026 OpenAI published an AI-generated proof of finite-time blowup (singularity formation) for the three-dimensional incompressible Navier–Stokes equations, addressing the Millennium Prize Problem, together with a Lean formalization [1, 2]. The result concerns the **forced** problem: a smooth solution starting from rest and driven by a smooth external force. The official Clay formulation accepts such a breakdown as one of its four alternative resolutions, but the behaviour of the unforced equations remains open. At the time of writing, human experts still need to confirm that the formalized statement is equivalent to the problem as posed, and the Clay Mathematics Institute has not awarded the prize. It is best treated as evidence of a new research-capability regime, not as proof that all scientific problems can now be rapidly solved.
 
 The central thesis of this paper is therefore modest but consequential:
 
@@ -129,6 +129,13 @@ In the idea-production form of Section 2, research productivity is $\dot{A}/R^{\
 
 > **Recursive acceleration holds in a domain when research productivity per unit of human and capital input stops declining and begins to rise—equivalently, when the effective feedback parameter $\phi$, re-estimated on rolling windows, trends upward, after automation of research inputs is accounted for.**
 
+**Measuring $R$ when AI is a research input.** This condition is only testable if $R$ is defined so that automation cannot inflate measured productivity by construction. If AI systems replace researchers and $R$ counts only people, productivity rises mechanically even when nothing about the discovery process has improved. The framework therefore follows Bloom et al. [6], who measure effective research input as deflated R&D *expenditure*, and requires that expenditure to include compute, cloud services, model access and laboratory automation bought for research. Two variants are reported:
+
+- **$R^{total}$ (primary):** deflated research expenditure including all automated inputs. Only this variant counts as evidence for the hypothesis.
+- **$R^{human}$ (secondary):** research personnel only. It is reported to show the extent of substitution, but a rise in productivity measured against $R^{human}$ alone is **not** evidence of recursive acceleration.
+
+The deflator and the classification of expenditure lines are fixed at preregistration.
+
 This condition is not expected to hold indefinitely. Energy, fabrication capacity, experiment duration, regulation, biological timescales, capital and safety constraints can reduce or reverse acceleration.
 
 Accordingly, the stronger form of the Saka Law is not "technology is exponential". It is:
@@ -180,11 +187,21 @@ against which a modern acceleration regime can be tested.
 
 ## 6. Technology Acceleration Ratio (TAR)
 
-Define
+TAR is defined at two levels. For an individual HTAB domain $i$, compare its current log-growth rate with its *own* history:
 
 $$
-TAR(t) = \frac{k_{current}(t)}{k_{HTAB}}.
+TAR_i(t) = \frac{k_{i,current}(t)}{k_{i,historical}}.
 $$
+
+For the aggregate, compare the weighted current rate with the weighted baseline:
+
+$$
+TAR(t) = \frac{\sum_i w_i\, k_{i,current}(t)}{k_{HTAB}}.
+$$
+
+Domain-level statements (such as prediction P1) use $TAR_i$; the aggregate $TAR$ summarizes the whole set. Comparing one domain's current rate with the aggregate baseline would confuse "this domain has always been fast" with "this domain has accelerated".
+
+For domains whose historical rate is near zero or negative (for example, stagnating series included to avoid selection bias), the ratio is unstable. For those, the difference $k_{i,current} - k_{i,historical}$ is reported instead.
 
 Interpretation:
 
@@ -251,6 +268,37 @@ where $\sigma < 1$ means the components are complements and the weakest subsyste
 ### 7.3 Levels, growth rates and acceleration
 
 $FTAF_t$ is a **level** index and equals 1 in 2026 by construction. Evidence for the Saka Law concerns its growth rate, $g_F(t) = d \ln FTAF_t / dt$, and whether that growth rate is rising, $dg_F/dt > 0$. Throughout the paper, "acceleration" refers to the second quantity.
+
+### 7.4 Separating inputs from outputs
+
+The full index mixes two kinds of component. Some measure **resources committed** to the innovation system; others measure **what the system can do**:
+
+| Type | Components |
+|---|---|
+| Inputs $I$ | $C$ (compute), $E$ (energy), $D$ (data), $M$ (manufacturing capacity) |
+| Outputs / capabilities $O$ | $A$ (AI capability), $R$ (experiments per researcher), $B$ (biotechnology), $S$ (space access), $L$ (clinical translation) |
+
+With a geometric mean, the growth rate of the full index is simply the weighted average of component growth rates, $g_F = \sum_j w_j\, g_j$. An investment boom—more data centres, more power, more fabs—can therefore make $dg_F/dt > 0$ without any change in how efficiently those resources produce new technology. That would be acceleration of *spending*, not of *discovery*, and it is not what the Saka Law claims.
+
+The framework therefore defines two sub-indices with the same weights, renormalized within each group:
+
+$$
+I_t = C_t^{0.15/0.35}\, E_t^{0.10/0.35}\, D_t^{0.05/0.35}\, M_t^{0.05/0.35},
+$$
+
+$$
+O_t = A_t^{0.25/0.65}\, R_t^{0.10/0.65}\, B_t^{0.15/0.65}\, S_t^{0.05/0.65}\, L_t^{0.10/0.65},
+$$
+
+and an efficiency index analogous to total factor productivity:
+
+$$
+\Pi_t = \frac{O_t}{I_t^{\,\eta}}, \qquad g_\Pi(t) = g_O(t) - \eta\, g_I(t),
+$$
+
+where $\eta$ is the historical elasticity of capabilities with respect to inputs, estimated by regressing $\ln O$ on $\ln I$ over the pre-freeze data and fixed at preregistration. Because that history is short for several components, $\eta$ is uncertain; results are reported for $\hat\eta$ and for $\eta = 1$, and $\eta$ is sampled in the Monte Carlo.
+
+The full $FTAF_t$ remains a useful descriptive level index. **The test of the hypothesis (prediction P2) is made on $O_t$ and $\Pi_t$**, not on $FTAF_t$.
 
 ---
 
@@ -367,23 +415,39 @@ A major acceleration in ageing-biology papers with no reduction in $L_1 \rightar
 
 ## 11. Longevity Escape Velocity proxy
 
-Longevity escape velocity (LEV) [23] can be represented in two related ways, which must not be mixed. They are not equivalent as observed quantities: one is a population measure, the other depends on an individual's own risk trajectory.
+Longevity escape velocity (LEV) [23] concerns whether a person's remaining healthy life stops shrinking as they age. Version 0.3.1 defined the period proxy as the raw time derivative of healthy-life expectancy at a fixed age, with threshold 1. That threshold is not the escape condition, and this version replaces it.
 
-**Period definition (used by this framework).** Let $HALE_x(t)$ be the period healthy-life expectancy at a fixed age $x$ (for example 65) in calendar year $t$, computed from that year's age-specific health and mortality rates. Define
+**Why the raw derivative with threshold 1 is wrong.** Let $HALE_x(t)$ be the period healthy-life expectancy at age $x$ in calendar year $t$, computed from that year's age-specific health and mortality rates. Consider a person whose risk matches the population's at each age. Their remaining healthy life is $h(t) = HALE_{a(t)}(t)$, with $da/dt = 1$, so
 
 $$
-LEV_x(t) = \frac{\partial\, HALE_x(t)}{\partial t}.
+\frac{dh}{dt} = \frac{\partial\, HALE_x}{\partial t} + \frac{\partial\, HALE_x}{\partial x}.
+$$
+
+Escape velocity is $dh/dt \ge 0$, which requires
+
+$$
+\frac{\partial\, HALE_x}{\partial t} \;\ge\; -\frac{\partial\, HALE_x}{\partial x}.
+$$
+
+The right-hand side—how much remaining healthy life is lost per year of age in a single period table—is usually **less than 1** at older ages, because surviving a year is itself selective. A threshold of 1 on the time derivative alone is therefore stricter than the escape condition, and its interpretation as "one year gained per year lived" mixes the period and individual views.
+
+**Normalized period definition (used by this framework).** Define
+
+$$
+LEV_x(t) = \frac{\partial_t\, HALE_x(t)}{-\,\partial_x\, HALE_x(t)}.
 $$
 
 Interpretation:
 
-- $LEV_x < 0$: healthy-life expectancy at age $x$ is falling;
-- $0 < LEV_x < 1$: medical progress offsets part of ageing; a person who ages one year gains less than one year of expected healthy life;
-- $LEV_x \ge 1$: the healthy-life-expectancy frontier moves outward by at least one year per elapsed year—the operational definition of longevity escape velocity in this framework.
+- $LEV_x < 0$: healthy-life expectancy at age $x$ is falling over calendar time;
+- $0 < LEV_x < 1$: medical progress offsets a fraction $LEV_x$ of the healthy life that a person of age $x$ loses by ageing one year;
+- $LEV_x \ge 1$: medical progress fully offsets that loss—the operational definition of longevity escape velocity in this framework.
 
-**Individual representation.** For a person aged $a(t)$, let $h(t)$ be their *remaining* expected healthy life. Ageing alone makes $h$ fall over time, so escape velocity corresponds to $dh/dt \ge 0$, not $\ge 1$. Using remaining life expectancy with a threshold of 1 would double-count the passage of time. Because $h_i(t)$ depends on the person's own health and risk, it cannot be read directly from period life tables; the two quantities agree only for an individual whose risk matches the population's at each age.
+With this normalization the period proxy and the individual condition $dh/dt \ge 0$ coincide for an individual with population-average risk, so the threshold is the same in both views. They still differ for any individual whose risk departs from the population's, and the period proxy assumes that current age-specific rates describe the future. The numerator $\partial_t HALE_x$ is also reported on its own, as the raw speed of the healthy-life frontier.
 
-**Reference point, not an estimate.** Record period life expectancy *at birth* has risen by about 0.25 years per year for more than 160 years [22]. That is a reference for the frontier of total life expectancy; it is not an estimate of $LEV_{65}$, which is a different series (healthy rather than total life, at age 65 rather than at birth, and in a given population rather than the record-holding one). Healthy-life expectancy has generally grown more slowly than total life expectancy. The current empirical value of the proxy must be estimated from fixed-age HALE series, and establishing that baseline is one of the first data tasks of the framework.
+**Estimation.** The denominator is estimated by finite differences across adjacent ages in the same period table. Most HALE series are published in five-year age groups, so single-year values must be interpolated; the interpolation method is fixed at preregistration. Both derivatives are noisy, and $LEV_x$ is reported with an interval, not as a point.
+
+**Reference point, not an estimate.** Record period life expectancy *at birth* has risen by about 0.25 years per year for more than 160 years [22]. That is a reference for the frontier of total life expectancy; it is not an estimate of $LEV_{65}$, which is a different series (healthy rather than total life, at age 65 rather than at birth, normalized by the age gradient, and in a given population rather than the record-holding one). Healthy-life expectancy has generally grown more slowly than total life expectancy. The current empirical value of the proxy must be estimated from fixed-age HALE series, and establishing that baseline is one of the first data tasks of the framework.
 
 This is an operational forecasting proxy rather than an accepted clinical metric. The framework does not claim that $LEV_x \ge 1$ has been achieved.
 
@@ -417,7 +481,7 @@ $$
 
 Population impact is then $P_j(T)$ multiplied by the class's projected $DAI_j$.
 
-In version 0.2, $\lambda_{0,j}$, $\alpha_j$ and $G_j$ are not estimated. Doing so requires the LTI transition data described in Section 10. This should be interpreted as technology-arrival forecasting, not as a personalized survival probability.
+In version 0.3.2, $\lambda_{0,j}$, $\alpha_j$ and $G_j$ are not estimated. Doing so requires the LTI transition data described in Section 10. This should be interpreted as technology-arrival forecasting, not as a personalized survival probability.
 
 ---
 
@@ -466,7 +530,7 @@ A reasonable scenario family for FTAF should include:
 - **central:** sustained AI/science acceleration with progressively declining growth rates;
 - **aggressive:** major breakthroughs in AI, automation, energy or manufacturing that extend the high-growth regime.
 
-Version 0.3.1 does not attach numbers to these scenarios. They will be quantified once the proxies of Section 7.1 have been populated.
+Version 0.3.2 does not attach numbers to these scenarios. They will be quantified once the proxies of Section 7.1 have been populated.
 
 The central qualitative expectation for 2046 is not "immortality". It is increased probability of:
 
@@ -507,7 +571,7 @@ The framework therefore treats "systemic rejuvenation" and "longevity escape vel
 
 The qualitative predictions of version 0.1 are replaced by dated, quantitative ones.
 
-**This version is not the preregistration.** Version 0.3.1 fixes the *form* of each prediction and the rule for deriving its threshold, but not the thresholds themselves. The preregistration is made when that rule has been applied to historical data and the resulting numbers are frozen, with a timestamp, in a public file (planned: `forecasts/preregistration-2026.json`), before any data from the tested windows are examined.
+**This version is not the preregistration.** Version 0.3.2 fixes the *form* of each prediction and the rule for deriving its threshold, but not the thresholds themselves. The preregistration is made when that rule has been applied to historical data and the resulting numbers are frozen, with a timestamp, in a public file (planned: `forecasts/preregistration-2026.json`), before any data from the tested windows are examined.
 
 **Windows.** Each window starts on the date the preregistration is frozen, not on 1 January 2026; data observed before that date are used only to estimate baselines. The window labels below (2026–2031, 2026–2036) are nominal and assume a freeze in late 2026.
 
@@ -518,25 +582,29 @@ The qualitative predictions of version 0.1 are replaced by dated, quantitative o
 
 The preregistered threshold is the larger of the two. This turns the predictions from subjective cut-offs into statistical tests.
 
+**Multiplicity.** Several predictions succeed if a criterion holds "in at least $k$" of many domains or strata (P1, P3, P5, P7, P8). With enough strata, some will cross any per-stratum threshold by chance. The 5% rule above is therefore applied to the **whole statement**, not to each stratum: the threshold is set so that the event "at least $k$ of the $m$ tested domains/strata pass" has at most 5% probability under the historical regime, obtained by simulation from the historical variability or, where simulation is not feasible, by a Holm correction across strata. The list of domains and strata, and hence $m$, is fixed at preregistration; adding strata afterwards is not allowed. All eight predictions are reported whatever their outcome, and no single success is presented as confirming the framework.
+
+**Power.** Before the thresholds are frozen, each prediction is simulated under two regimes: the historical regime continuing, and a minimally relevant acceleration. The resulting statistical power is published with the preregistration. This matters most for P2 and P4, which estimate a change in a growth rate—a second derivative of a logarithm—from a short window of noisy, autocorrelated data. A prediction with low power (below 50%) is either given a longer window or marked as exploratory, so that a null result is not misread as evidence against the hypothesis.
+
 **Intervals.** All estimates are reported with 50%, 80%, 90% and 95% intervals. The **90% interval** is preregistered as the decision criterion: "lower bound above 1" or "interval excluding 0" below refers to it.
 
 **Supporting predictions.** If recursive acceleration is real, then:
 
 | # | Prediction | Window | Supports the hypothesis if… |
 |---|---|---|---|
-| P1 | Cross-domain acceleration | 2026–2031 | $TAR > 1.5$, with the lower bound of its 90% interval above 1, in at least 3 of the HTAB domains |
-| P2 | Rising growth rate | 2026–2031 | Estimated $dg_F/dt > 0$ for FTAF, with its 90% interval excluding 0 |
-| P3 | Research productivity reverses | 2026–2036 | Research productivity (in the sense of [6]) rises in at least 2 of the domains studied there |
-| P4 | Autonomy keeps growing | 2026–2031 | The METR 50% time-horizon doubling time stays at or below 12 months, and the composite $A$ index keeps rising in its non-software components |
+| P1 | Cross-domain acceleration | 2026–2031 | $TAR_i > 1.5$ (domain-level, Section 6), with the lower bound of its 90% interval above 1, in at least 3 of the HTAB domains |
+| P2 | Rising growth rate of capabilities and efficiency | 2026–2031 | Estimated $dg_O/dt > 0$ **and** $dg_\Pi/dt > 0$ (Section 7.4), each with its 90% interval excluding 0; a rise in $dg_F/dt$ driven only by inputs does not count |
+| P3 | Research productivity reverses | 2026–2036 | Research productivity (in the sense of [6]), measured against $R^{total}$ (Section 4), rises in at least 2 of the domains studied there |
+| P4 | Autonomy accelerates | 2026–2031 | The METR 50% time-horizon doubling time over the window is **shorter** than over the pre-freeze baseline period, with the 90% interval of their ratio below 1; and the non-software components of the composite $A$ index keep rising |
 | P5 | Faster experimental loops | 2026–2031 | Median SCT falls by at least 50% in at least 2 tracked self-driving-lab domains, with no fall in $Q_t$ |
-| P6 | Replicated AI discoveries | 2026–2031 | The annual number of independently replicated discoveries graded $AI_3$ or $AI_4$ (Section 9) at least doubles |
+| P6 | Replicated AI discoveries | 2026–2031 | The annual number of independently replicated discoveries graded $AI_3$ or $AI_4$ (Section 9) at least doubles **and** exceeds a preregistered absolute minimum, so that a change from a near-zero base (e.g. 1 to 2) cannot satisfy it |
 | P7 | Faster translation | 2026–2036 | Median IND-to-approval time, estimated by survival analysis within therapeutic area × modality strata (Section 10), falls by at least 20% relative to 2015–2025 IND cohorts in at least one therapeutic area |
 | P8 | Better clinical success | 2026–2036 | Phase I-to-approval success probability, estimated with a multistate model within therapeutic area × modality strata (Section 10), improves by at least 30% relative to [21] in at least one therapeutic area |
 
 **Refuting outcomes.** The hypothesis should be weakened or rejected as a useful forecasting framework if, by the end of the relevant window:
 
-- $TAR$ is not distinguishable from 1 in a majority of HTAB domains (P1 fails);
-- AI benchmark and autonomy metrics keep improving (P4 holds) while SCT, $Q_t$ and replication rates do not (P5 and P6 fail);
+- $TAR_i$ is not distinguishable from 1 in a majority of HTAB domains (P1 fails);
+- AI benchmark and autonomy metrics keep improving while SCT, $Q_t$ and replication rates do not (P5 and P6 fail);
 - clinical translation times and success probabilities are statistically unchanged (P7 and P8 fail);
 - $LEV_{65}(t)$ for the largest high-income populations shows no increase over its own 2000–2025 trend through 2046;
 - persistent energy, fabrication, regulatory or biological bottlenecks explain most of the shortfall.
@@ -589,6 +657,7 @@ Simulate at least $10^5$ futures with distributions over:
 - growth-rate decay;
 - breakthrough probabilities;
 - the elasticity of substitution $\sigma$ between subsystems;
+- the input elasticity $\eta$ of the efficiency index (Section 7.4);
 - energy constraints;
 - AI reliability;
 - experimental throughput;
@@ -596,6 +665,10 @@ Simulate at least $10^5$ futures with distributions over:
 - clinical success probabilities.
 
 Predictions should be scored retrospectively using Brier scores [24] where possible.
+
+### Data sources
+
+Candidate public data sources for each component, for the HTAB baseline and for the LEV proxy are listed in the technical specification (`model-spec.md`, Section 13). Three inputs—Scientific Cycle Time, validated throughput $Q_t$ and the $AI_0$–$AI_4$ attribution—have no existing dataset and must be built by the project.
 
 ---
 
@@ -692,6 +765,18 @@ The hypothesis will become scientifically useful only if its metrics are populat
 25. International Energy Agency. **Energy and AI.** 2025. https://www.iea.org/reports/energy-and-ai
 
 ---
+
+## Changes from version 0.3.1
+
+- **Inputs vs outputs.** Added Section 7.4: the state vector is split into resource inputs ($C, E, D, M$) and capabilities ($A, R, B, S, L$), with an efficiency index $\Pi_t = O_t / I_t^{\eta}$. P2 is now tested on $O_t$ and $\Pi_t$, so that an investment boom alone cannot satisfy it.
+- **P4 now tests acceleration.** The previous criterion (doubling time at or below 12 months) was satisfied by a plain exponential, contradicting Section 4. P4 now requires the METR doubling time to shorten relative to the pre-freeze baseline.
+- **LEV proxy normalized.** The raw time derivative of $HALE_x$ with threshold 1 is not the escape condition. $LEV_x$ is now the time derivative divided by the loss of healthy life per year of age, so that $LEV_x \ge 1$ is equivalent to $dh/dt \ge 0$ for an individual with population-average risk.
+- **Research input with automation.** Section 4 now defines $R^{total}$ (deflated research expenditure including compute and lab automation) as the primary denominator for research productivity; productivity measured against human researchers alone does not count as evidence. P3 uses $R^{total}$.
+- **Domain-level TAR.** Section 6 defines $TAR_i$ against each domain's own history, used by P1; differences replace ratios for stagnating series.
+- **Multiplicity and power.** Thresholds for "at least $k$ of $m$" predictions control the error rate of the whole statement; the domain and stratum lists are fixed at preregistration; a power analysis under historical and minimally-accelerated regimes is published with the preregistration.
+- **P6** requires a preregistered absolute minimum in addition to doubling.
+- **Navier–Stokes.** Specified that the 8 September 2026 result concerns the forced equations (a breakdown alternative accepted by the Clay formulation) and that the unforced case remains open.
+- Added a pointer to candidate data sources (model specification, Section 13); fixed leftover references to earlier version numbers in Sections 12 and 15.
 
 ## Changes from version 0.3
 

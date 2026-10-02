@@ -2,7 +2,7 @@
 
 **A framework for measuring recursive technological acceleration and its implications for biomedical longevity**
 
-Version 0.3.1 — 26 September 2026
+Version 0.3.2 — 2 October 2026
 
 This repository contains a conceptual forecasting paper developed around a proposed idea called the **Saka Law of Recursive Technological Acceleration**.
 
@@ -30,7 +30,8 @@ The longevity component asks a narrower question: **can medical progress increas
 ## Files
 
 - [paper.md](./paper.md) — full conceptual paper.
-- [model-spec.md](./model-spec.md) — equations, variables and proposed update procedure.
+- [model-spec.md](./model-spec.md) — equations, variables, proposed update procedure and candidate data sources (Section 13).
+- [CITATION.cff](./CITATION.cff) — citation metadata (used by GitHub and Zenodo).
 
 ## Suggested repository structure for future versions
 
@@ -54,7 +55,17 @@ saka-law/
 
 For now cite as:
 
-**Carrasco, J. (Saka). (2026). _The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity_. Version 0.3.1.**
+**Carrasco, J. (Saka). (2026). _The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity_. Version 0.3.2.**
+
+## What changed in v0.3.2
+
+- The hypothesis test (P2) now separates resource inputs (compute, energy, data, manufacturing) from capabilities, so an investment boom alone cannot count as acceleration.
+- P4 now requires AI autonomy to *accelerate* (shorter doubling time), not just to keep growing exponentially.
+- The longevity-escape-velocity proxy is normalized by the age gradient of healthy-life expectancy, making the period and individual definitions agree.
+- Research productivity is measured against total research input including compute and automation.
+- Multiple-comparison control and a power analysis are required before preregistration.
+
+See the changelog at the end of [paper.md](./paper.md) for the full list.
 
 ## Important note
 

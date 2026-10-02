@@ -1,4 +1,4 @@
-# Saka Forecasting Engine — Model Specification v0.3.1
+# Saka Forecasting Engine — Model Specification v0.3.2
 
 ## 1. State vector
 
@@ -68,6 +68,32 @@ $$
 
 "Acceleration" in this framework means $dg_F/dt > 0$ (super-exponential growth), not $d^2 FTAF/dt^2 > 0$, which any exponential satisfies.
 
+### 2.4 Inputs, outputs and efficiency
+
+Split the state vector into resource inputs and capabilities:
+
+- Inputs $I$: $C$, $E$, $D$, $M$.
+- Outputs / capabilities $O$: $A$, $R$, $B$, $S$, $L$.
+
+With the default weights renormalized within each group:
+
+$$
+I_t = C_t^{0.15/0.35}\, E_t^{0.10/0.35}\, D_t^{0.05/0.35}\, M_t^{0.05/0.35},
+$$
+
+$$
+O_t = A_t^{0.25/0.65}\, R_t^{0.10/0.65}\, B_t^{0.15/0.65}\, S_t^{0.05/0.65}\, L_t^{0.10/0.65}
+$$
+
+Efficiency index (TFP analogue):
+
+$$
+\Pi_t = \frac{O_t}{I_t^{\,\eta}}, \qquad g_\Pi = g_O - \eta\, g_I
+$$
+
+- $\eta$: historical elasticity of $O$ with respect to $I$, from a regression of $\ln O$ on $\ln I$ over pre-freeze data; fixed at preregistration; results also reported for $\eta = 1$; sampled in the Monte Carlo.
+- Because $g_F = \sum_j w_j g_j$ for the geometric mean, $dg_F/dt > 0$ can be produced by input growth alone. **P2 is tested on $O_t$ and $\Pi_t$, not on $FTAF_t$.**
+
 ## 3. Friction, evidence and diffusion
 
 The three correction terms act at different levels.
@@ -101,11 +127,19 @@ $$
 k_{HTAB} = \sum_i w_i\, k_i,
 $$
 
-and the current Technology Acceleration Ratio is
+and the Technology Acceleration Ratio is defined per domain, against that domain's own history,
 
 $$
-TAR_t = \frac{k_{current,t}}{k_{HTAB}}.
+TAR_{i,t} = \frac{k_{i,current,t}}{k_{i,historical}},
 $$
+
+and in aggregate,
+
+$$
+TAR_t = \frac{\sum_i w_i\, k_{i,current,t}}{k_{HTAB}}.
+$$
+
+Domain-level predictions (P1) use $TAR_i$. For series whose historical rate is near zero or negative, report the difference $k_{i,current} - k_{i,historical}$ instead of the ratio.
 
 Interpretation:
 
@@ -118,6 +152,15 @@ Requirements:
 - The series list must include domains that stagnated (e.g. drugs approved per R&D dollar, crop yields, transport speed, construction productivity), not only known success stories.
 - Series and weights $w_i$ are fixed before current data are compared.
 - $TAR$ is always reported with an uncertainty interval; acceleration requires its lower bound to exceed 1.
+
+### 4.1 Research productivity with automated inputs
+
+Research productivity (Bloom et al. 2020) is output growth per unit of effective research input. When AI substitutes for researchers, define:
+
+- $R^{total}$ (**primary**): deflated research expenditure, including compute, cloud, model access and laboratory automation bought for research.
+- $R^{human}$ (secondary): research personnel only. Reported to show substitution; a productivity rise measured only against $R^{human}$ is **not** evidence for the hypothesis.
+
+Deflator and expenditure classification are fixed at preregistration. P3 uses $R^{total}$.
 
 ## 5. Growth-model comparison
 
@@ -227,19 +270,29 @@ Values are provisional. EMS is intervention-level (see Section 3).
 
 ## 9. Longevity Escape Velocity proxy
 
-**Period definition (framework default).** Let $HALE_x(t)$ be period healthy-life expectancy at fixed age $x$ (default $x = 65$) in calendar year $t$. Define
+**Escape condition.** For an individual with population-average risk, remaining healthy life is $h(t) = HALE_{a(t)}(t)$ with $da/dt = 1$, so
 
 $$
-LEV_x(t) = \frac{\partial\, HALE_x(t)}{\partial t}.
+\frac{dh}{dt} = \partial_t HALE_x + \partial_x HALE_x .
+$$
+
+Escape velocity, $dh/dt \geq 0$, requires $\partial_t HALE_x \geq -\partial_x HALE_x$. The right-hand side is usually below 1 at older ages, so the v0.3.1 rule ($\partial_t HALE_x \geq 1$) was stricter than the escape condition.
+
+**Normalized period definition (framework default).** With $HALE_x(t)$ the period healthy-life expectancy at age $x$ (default $x = 65$) in year $t$:
+
+$$
+LEV_x(t) = \frac{\partial_t\, HALE_x(t)}{-\,\partial_x\, HALE_x(t)}.
 $$
 
 Interpretation:
 
-- $LEV_x < 0$: healthy-life expectancy at age $x$ is falling.
-- $0 < LEV_x < 1$: medicine offsets part of chronological ageing.
-- $LEV_x \geq 1$: operational definition of longevity escape velocity for this framework.
+- $LEV_x < 0$: healthy-life expectancy at age $x$ is falling over calendar time.
+- $0 < LEV_x < 1$: medicine offsets a fraction $LEV_x$ of the healthy life lost per year of ageing at age $x$.
+- $LEV_x \geq 1$: operational definition of longevity escape velocity; equivalent to $dh/dt \geq 0$ for an individual with population-average risk.
 
-**Individual representation (related, not equivalent).** For individual $i$, let $h_i(t)$ be *remaining* expected healthy life. Ageing alone makes $h_i$ decrease, so escape velocity is $dh_i/dt \geq 0$. Do not combine remaining life expectancy with a threshold of 1. $h_i$ depends on individual risk and cannot be read from period tables; it matches the population measure only for someone whose risk equals the population's at each age.
+Also report the numerator $\partial_t HALE_x$ alone (raw frontier speed). Estimate $\partial_x HALE_x$ by finite differences across adjacent ages in the same period table; interpolate five-year age groups to single years with a method fixed at preregistration; report intervals.
+
+**Limits.** The period proxy assumes current age-specific rates persist and does not describe individuals whose risk departs from the population's.
 
 **Reference, not an estimate.** Record period life expectancy at birth has risen by about 0.25 years per year since 1840 (Oeppen & Vaupel 2002). This is a different series from $HALE_{65}$ and does not estimate $LEV_{65}$; the proxy's current value must be estimated from fixed-age HALE series.
 
@@ -276,7 +329,7 @@ It is not a personal mortality calculator.
 Future versions should:
 
 1. Specify distributions for annual growth and slowdown in each subsystem.
-2. Sample the elasticity of substitution $\sigma$ (Section 2.2).
+2. Sample the elasticity of substitution $\sigma$ (Section 2.2) and the input elasticity $\eta$ (Section 2.4).
 3. Sample bottlenecks and discontinuous breakthroughs.
 4. Simulate at least $10^5$ trajectories.
 5. Report medians and 10/50/90% intervals.
@@ -285,27 +338,31 @@ Future versions should:
 
 ## 12. Falsification criteria
 
-v0.3.1 is **not** the preregistration: it fixes the form of each prediction and the threshold rule. The preregistration is the frozen, timestamped output of that rule (planned: `forecasts/preregistration-2026.json`), made before any data from the tested windows are examined. Each window starts on the freeze date; earlier data are used only for baselines. Window labels below are nominal, assuming a freeze in late 2026.
+v0.3.2 is **not** the preregistration: it fixes the form of each prediction and the threshold rule. The preregistration is the frozen, timestamped output of that rule (planned: `forecasts/preregistration-2026.json`), made before any data from the tested windows are examined. Each window starts on the freeze date; earlier data are used only for baselines. Window labels below are nominal, assuming a freeze in late 2026.
 
 Thresholds below are **placeholders**. Before preregistration, each is replaced by the larger of (1) the value exceeded with at most 5% probability under the historical regime, from the statistic's variability over past windows of equal length, and (2) the minimum scientifically or clinically relevant effect.
+
+**Multiplicity.** For "at least $k$ of $m$" predictions (P1, P3, P5, P7, P8), the 5% rule applies to the whole statement: simulate the probability that at least $k$ of the $m$ preregistered domains/strata pass under the historical regime, or use a Holm correction across strata where simulation is infeasible. Domain and stratum lists (hence $m$) are fixed at preregistration. All predictions are reported regardless of outcome.
+
+**Power.** Before freezing, simulate each prediction under (a) the historical regime and (b) a minimally relevant acceleration, and publish the power. Predictions with power below 50% (likely P2 and P4, which estimate a change in a growth rate over a short window) get a longer window or are marked exploratory.
 
 Report 50/80/90/95% intervals; the **90% interval** is the preregistered decision criterion.
 
 | # | Prediction | Window | Supports the hypothesis if… |
 |---|---|---|---|
-| P1 | Cross-domain acceleration | 2026–2031 | $TAR > 1.5$, lower 90% bound $> 1$, in at least 3 HTAB domains |
-| P2 | Rising growth rate | 2026–2031 | $dg_F/dt > 0$, 90% interval excluding 0 |
-| P3 | Research productivity reverses | 2026–2036 | Research productivity (Bloom et al. 2020 sense) rises in at least 2 of their domains |
-| P4 | Autonomy keeps growing | 2026–2031 | METR 50% time-horizon doubling time $\leq$ 12 months, and non-software components of $A$ rising |
+| P1 | Cross-domain acceleration | 2026–2031 | $TAR_i > 1.5$, lower 90% bound $> 1$, in at least 3 HTAB domains |
+| P2 | Rising growth of capabilities and efficiency | 2026–2031 | $dg_O/dt > 0$ and $dg_\Pi/dt > 0$ (Section 2.4), each with 90% interval excluding 0 |
+| P3 | Research productivity reverses | 2026–2036 | Research productivity against $R^{total}$ (Section 4.1, Bloom et al. 2020 sense) rises in at least 2 of their domains |
+| P4 | Autonomy accelerates | 2026–2031 | METR 50% time-horizon doubling time over the window shorter than over the pre-freeze baseline (90% interval of the ratio below 1), and non-software components of $A$ rising |
 | P5 | Faster experimental loops | 2026–2031 | Median SCT falls $\geq$ 50% in at least 2 self-driving-lab domains, with no fall in $Q_t$ |
-| P6 | Replicated AI discoveries | 2026–2031 | Annual independently replicated $AI_3$/$AI_4$ discoveries (Section 6.1) at least double |
+| P6 | Replicated AI discoveries | 2026–2031 | Annual independently replicated $AI_3$/$AI_4$ discoveries (Section 6.1) at least double and exceed a preregistered absolute minimum |
 | P7 | Faster translation | 2026–2036 | Median IND-to-approval time (survival analysis, within area × modality strata) falls $\geq$ 20% vs 2015–2025 IND cohorts in at least one therapeutic area |
 | P8 | Better clinical success | 2026–2036 | Phase I-to-approval probability (multistate model, within strata) improves $\geq$ 30% vs Wong et al. 2019 in at least one area |
 
 The Saka Law should be weakened or rejected as a useful forecasting hypothesis if, by the end of the relevant window:
 
-- $TAR$ is not distinguishable from 1 in a majority of HTAB domains;
-- AI capability and autonomy improve (P4) but SCT, $Q_t$ and replication do not (P5, P6 fail);
+- $TAR_i$ is not distinguishable from 1 in a majority of HTAB domains;
+- AI capability and autonomy improve but SCT, $Q_t$ and replication do not (P5, P6 fail);
 - biological translation times and success probabilities remain statistically unchanged (P7, P8 fail);
 - $LEV_{65}(t)$ in the largest high-income populations shows no increase over its own 2000–2025 trend through 2046;
 - persistent physical, economic or regulatory bottlenecks dominate the feedback loop.
@@ -313,3 +370,39 @@ The Saka Law should be weakened or rejected as a useful forecasting hypothesis i
 Success of P1–P6 with failure of P7, P8 and the LEV criterion would support acceleration in computation and discovery but not its extension to biomedicine.
 
 The model is therefore designed to permit a negative result.
+
+## 13. Candidate data sources
+
+Sources are proposals; each must be fixed, with version and access date, at preregistration. Access terms change and should be re-checked when data are pulled.
+
+### 13.1 State vector
+
+| Component | Candidate sources | Access |
+|---|---|---|
+| $A$ | METR time-horizon data; Epoch AI Benchmarking Hub (FrontierMath and others); formal-proof benchmarks (e.g. miniF2F, PutnamBench) | Open |
+| $C$ | Epoch AI Data Hub (notable models, ML hardware, compute stock); TOP500 | Open |
+| $E$ | Ember electricity data; IEA data-centre estimates; LBNL "Queued Up" interconnection-queue data | Ember and LBNL open; IEA partly |
+| $R$ | No central database; to be extracted from self-driving-lab publications in fixed domains | **To build** |
+| $B$ | NHGRI sequencing-cost series; ClinicalTrials.gov for modality classes in human trials | Open |
+| $D$ | Published cohort sizes (e.g. UK Biobank, All of Us, FinnGen) | Sizes open; data controlled |
+| $S$ | Jonathan McDowell's GCAT launch catalogue; published cost-per-kg estimates | Open |
+| $M$ | Industry reports on wafer starts (e.g. SEMI, foundry filings); cell- and gene-therapy capacity surveys | Mostly paid |
+| $L$ | AACT (ClinicalTrials.gov as a relational database); Drugs@FDA; FDA novel approvals | Open |
+
+### 13.2 HTAB baseline
+
+- Santa Fe Institute Performance Curve Database (the data behind Nagy et al. 2013 and Farmer & Lafond 2016).
+- Our World in Data technology series (transistors, solar, batteries, sequencing), with original sources.
+- Stagnating domains: FAOSTAT crop yields; BLS construction productivity; Eroom's-law series (Scannell et al. 2012).
+- Bloom et al. (2020) replication package (openICPSR), needed for P3.
+
+### 13.3 Longevity and translation
+
+- Human Mortality Database (period life tables by single year of age).
+- HALE by age: IHME Global Burden of Disease; WHO Global Health Observatory.
+- Clinical transition probabilities: Wong et al. (2019) used proprietary data; an open replication must be rebuilt from AACT linked to Drugs@FDA.
+
+### 13.4 To be built by the project
+
+- Scientific Cycle Time and $Q_t$ in 2–3 fixed self-driving-lab domains, extracted from methods sections.
+- $AI_0$–$AI_4$ attribution: candidate discoveries from OpenAlex/Crossref metadata (including CRediT roles where present), coded by two independent coders. If an AI system is used as one coder, the second must be human.

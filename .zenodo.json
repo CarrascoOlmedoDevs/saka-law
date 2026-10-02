@@ -1,0 +1,23 @@
+{
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "title": "The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity",
+  "version": "0.3.2",
+  "creators": [
+    { "name": "Carrasco, Javier" }
+  ],
+  "description": "<p>A falsifiable forecasting hypothesis and measurement framework for recursive technological acceleration: when technology materially improves the process by which new technology is discovered, validated and deployed, the growth rate of technological progress can itself increase.</p><p>The paper introduces the Future Technology Acceleration Framework (FTAF), which separates resource inputs (compute, energy, data, manufacturing) from capabilities (AI, laboratory automation, biotechnology, space access, clinical translation), together with a historical baseline (HTAB), a Technology Acceleration Ratio (TAR), a Longevity Translation Index (LTI) and a normalized longevity-escape-velocity proxy. It ends with eight dated, quantitative predictions and a preregistration protocol with multiplicity control and power analysis.</p><p>Conceptual forecasting paper, not peer reviewed. The full text is in Saka_Law_v0.3.2.pdf; source files are paper.md and model-spec.md.</p>",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "keywords": [
+    "technological forecasting",
+    "recursive acceleration",
+    "research productivity",
+    "idea production function",
+    "artificial intelligence",
+    "longevity escape velocity",
+    "preregistration"
+  ],
+  "notes": "Developed through human-AI collaboration. Indices, weights and thresholds are proposals for testing, not established standards. Not medical advice."
+}

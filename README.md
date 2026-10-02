@@ -31,6 +31,7 @@ The longevity component asks a narrower question: **can medical progress increas
 
 - [paper.md](./paper.md) — full conceptual paper.
 - [model-spec.md](./model-spec.md) — equations, variables, proposed update procedure and candidate data sources (Section 13).
+- [Saka_Law_v0.3.2.pdf](./Saka_Law_v0.3.2.pdf) — PDF of the paper with the specification as appendix.
 - [LICENSE](./LICENSE) — CC BY 4.0.
 - [CITATION.cff](./CITATION.cff) — citation metadata (used by GitHub and Zenodo).
 

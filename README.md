@@ -31,6 +31,7 @@ The longevity component asks a narrower question: **can medical progress increas
 
 - [paper.md](./paper.md) — full conceptual paper.
 - [model-spec.md](./model-spec.md) — equations, variables, proposed update procedure and candidate data sources (Section 13).
+- [LICENSE](./LICENSE) — CC BY 4.0.
 - [CITATION.cff](./CITATION.cff) — citation metadata (used by GitHub and Zenodo).
 
 ## Suggested repository structure for future versions
@@ -70,3 +71,9 @@ See the changelog at the end of [paper.md](./paper.md) for the full list.
 ## Important note
 
 This version contains no numerical forecasts. Its weights and prediction thresholds are **subjective proposals**, not estimates or clinical predictions. Future versions should populate the component proxies with reproducible datasets, fix the thresholds in a preregistration, and add out-of-sample validation.
+
+## License
+
+The paper and specification are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): anyone may share and adapt them, including commercially, as long as they credit the author and indicate changes. See [LICENSE](./LICENSE).
+
+Code added in future versions (data fetchers, notebooks) will be licensed separately under the MIT License, since Creative Commons licenses are not designed for software.

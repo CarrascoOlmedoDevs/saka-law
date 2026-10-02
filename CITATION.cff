@@ -9,6 +9,7 @@ authors:
     given-names: "Javier"
     alias: "Saka"
 repository-code: "https://github.com/CarrascoOlmedoDevs/saka-law"
+license: "CC-BY-4.0"
 abstract: >-
   A falsifiable forecasting hypothesis and measurement framework for recursive
   technological acceleration: when technology materially improves the process by

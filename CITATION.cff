@@ -8,6 +8,7 @@ authors:
   - family-names: "Carrasco"
     given-names: "Javier"
     alias: "Saka"
+doi: "10.5281/zenodo.23092957"
 repository-code: "https://github.com/CarrascoOlmedoDevs/saka-law"
 license: "CC-BY-4.0"
 abstract: >-

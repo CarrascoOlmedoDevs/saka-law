@@ -1,5 +1,7 @@
 # The Saka Law
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23092957.svg)](https://doi.org/10.5281/zenodo.23092957)
+
 **A framework for measuring recursive technological acceleration and its implications for biomedical longevity**
 
 Version 0.3.2 — 2 October 2026
@@ -57,7 +59,9 @@ saka-law/
 
 For now cite as:
 
-**Carrasco, J. (Saka). (2026). _The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity_. Version 0.3.2.**
+**Carrasco, J. (Saka). (2026). _The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity_. Version 0.3.2. Zenodo. https://doi.org/10.5281/zenodo.23092958**
+
+To cite the latest version instead of this specific one, use the concept DOI [10.5281/zenodo.23092957](https://doi.org/10.5281/zenodo.23092957).
 
 ## What changed in v0.3.2
 

@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use or discuss this framework, please cite it as below."
 type: report
 title: "The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity"
-version: "0.3.2"
-date-released: "2026-10-02"
+version: "0.3.3"
+date-released: "2026-10-06"
 authors:
   - family-names: "Carrasco"
     given-names: "Javier"

@@ -50,9 +50,70 @@ None of these is a primary scientific source. No publication, preprint or method
 
 ---
 
+## Case 2 — Riemann zeta function: proportion of zeros on the critical line (Anthropic, August 2026)
+
+**Added:** 6 October 2026. **Conflict of interest:** the first coder is a Claude model and this result was produced by a Claude model. The human second coding is especially important for this case.
+
+**Source (primary):** Anthropic, ["Claude has improved on a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the Riemann hypothesis"](https://www.anthropic.com/research/riemann-zeta), 10 August 2026, with a paper and a Lean formalization.
+
+**What was done:** an unreleased research version of Claude raised the proven lower bound on the proportion of non-trivial zeros on the critical line from 41.6% to 67.2%.
+
+**Roles reported:** a non-mathematician staff member asked the model to attempt the problem and encouraged it to continue; the model ran two Claude Code sessions (about 31 million output tokens, roughly 60 sub-agents in the second); two Anthropic mathematicians checked the result and two external experts examined the paper. The model also produced a Lean formalization.
+
+**Provisional level:** $AI_4$ for the intellectual work (problem attacked, method chosen, proof constructed and formalized by the model; humans limited to prompting and verification). It may be $AI_3$ if the paper shows that humans chose the method.
+
+**Counts toward P6?** It would, as a pre-freeze **baseline** event, once (a) independent human verification is published or the paper is accepted, and (b) the Lean statement is confirmed to match the claimed theorem. Machine-checked proof satisfies the replication requirement for mathematics only if the formal statement is checked by humans.
+
+**Importance:** a large improvement on a bound that had moved slowly for decades, but, as Anthropic notes, it does not lead to a proof of the Riemann hypothesis.
+
+---
+
+## Case 3 — Navier–Stokes finite-time blowup with forcing (OpenAI, September 2026)
+
+**Added:** 6 October 2026.
+
+**Sources (primary and secondary):** OpenAI, "On the Navier–Stokes Millennium Prize Problem", 8 September 2026, with manuscript and Lean formalization; Clay Mathematics Institute statement of 11 September 2026 (problem "apparently settled", evaluation unhurried); press coverage of the priority dispute.
+
+**What was done:** a proof that a smooth solution of the 3D incompressible Navier–Stokes equations, started from rest and driven by a smooth external force, can blow up in finite time. The unforced case remains open.
+
+**Roles reported:** an internal OpenAI model running about 10,000 agents for 88 hours produced the proof; another model produced the Lean formalization; the method builds on a 2023 construction by Córdoba and Martínez-Zoroa. OpenAI started the effort after hearing that human researchers might be close to related results.
+
+**Provisional level:** $AI_3$–$AI_4$. The proof was constructed by the system, but humans chose the problem and the approach builds directly on prior human work. The coding depends on how much of the construction was directed by humans, which the public material does not fully settle.
+
+**Counts toward P6?** As a pre-freeze baseline event, once independent verification is published. Its importance is high (a Millennium Prize formulation), but the forced case is the more tractable one.
+
+---
+
+## Case 4 — Fermat's Last Theorem formalization (Anthropic, September 2026)
+
+**Added:** 6 October 2026. Same conflict of interest as case 2.
+
+**Source (primary):** Anthropic, ["Formalizing Fermat's Last Theorem"](https://www.anthropic.com/research/formalizing-fermats-last-theorem), 4 September 2026.
+
+**What was done:** a complete Lean formalization of the existing proof of Fermat's Last Theorem (about 13 million lines, 29,500 intermediate theorems, 11 days), largely autonomous, reviewed by Kevin Buzzard.
+
+**Provisional coding:** **not a discovery** — no new mathematics. It is coded as a capability event for the formal-theorem-proving sub-measure of $A$, not on the attribution scale, and does not count toward P6.
+
+**Why it is a useful calibration case:** it shows that a very large, largely autonomous AI achievement can still be outside P6. Autonomy and novelty are separate questions.
+
+---
+
+## Case 5 — Algorithmic complexity result (6 October 2026) — pending identification
+
+**Added:** 6 October 2026.
+
+**Source (secondary):** Carlos Santana (@DotCSV) on X, 6 October 2026: a paper reports that Claude crossed a theoretical barrier in algorithmic complexity that many works had assumed but not proven; the improvement is described as very small in magnitude but theoretically important, according to people in the field.
+
+**Status:** the paper has not yet been identified, so the case is **not coded**. Under refinement 1 below, a social-media report is a claim until the publication is found.
+
+---
+
 ## Refinements suggested by these cases (proposed for v0.3.3)
 
 1. **Unit of analysis.** The scale codes *discoveries documented in a publication or preprint*, not laboratories or claims. Statements in interviews, blogs or social media about how a group uses AI are recorded as **claims** and are not coded, however specific they sound.
 2. **Who chose the search space.** If AI generates or ranks candidates within a target space chosen by humans, the maximum level is $AI_2$. $AI_3$ requires that AI proposed the hypothesis or target itself, not only the best item within a human-defined search.
 3. **Speed claims are not evidence.** Claims of acceleration enter the framework only as measured SCT or $Q_t$ from dated records, never from statements of how long something "would have taken".
 4. **Source quality is recorded.** Each case lists whether its sources are primary (paper, preprint, registry) or secondary (press, interview, social media). Only primary sources can support a level above $AI_1$.
+5. **Formalization is not discovery.** Formalizing a known result is a capability event for $A$, not a discovery on the attribution scale (case 4).
+6. **Formal proofs replicate only with a checked statement.** A machine-checked proof counts as replication for P6 only after humans confirm that the formal statement matches the claimed theorem (cases 2 and 3).
+7. **Conflicts of interest are recorded.** When the AI system that is coding belongs to the same developer as the system being coded, the case is flagged and requires the human coding to be done first.

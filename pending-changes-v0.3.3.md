@@ -54,6 +54,29 @@ This test concerns the efficiency of an AI input. On its own it does not bear on
 
 **Change:** consider adding cost per watt and conversion efficiency of power semiconductors (GaN, SiC) as an HTAB series relevant to $E$. Record gallium supply concentration and export controls as a BPI item (geopolitical disruption), not as part of $E$.
 
+## 9. AI attribution: three further refinements
+
+**Motivation (6 Oct 2026):** calibration cases 2–4 (Riemann zeta bound, Navier–Stokes, Fermat formalization).
+
+- Formalizing a known result is a capability event for $A$, not a discovery.
+- A machine-checked proof counts as replication only after humans confirm that the formal statement matches the claimed theorem.
+- Conflicts of interest between an AI coder and the system being coded are flagged; the human coding is done first in those cases.
+
+## 10. P6: count only from a frozen baseline, and weight by importance
+
+**Motivation (6 Oct 2026):** at least three candidate $AI_3$/$AI_4$ results in mathematics in two months (Riemann zeta bound, 10 Aug; Navier–Stokes, 8 Sep; an algorithmic-complexity result, 6 Oct, paper not yet identified).
+
+**Problems:**
+
+1. Until the preregistration is frozen, every such event enlarges the **baseline** against which P6 must "at least double". The later the freeze, the higher the bar. The baseline must therefore be counted up to a fixed date and frozen with the thresholds.
+2. A raw count treats a tiny improvement on a technical bound the same as the resolution of a central problem.
+
+**Change:**
+
+- P6 reports the count of qualifying discoveries **separately by domain** (mathematics and formal sciences; computational sciences; experimental sciences), because mathematics is the domain where AI can work without physical validation and would dominate a pooled count.
+- Each discovery also receives a preregistered **importance grade** (e.g. 1 = incremental improvement of a known bound; 2 = resolution of a recognized open problem; 3 = resolution of a central problem of the field), assigned by the same two-coder procedure. P6 is reported both as a raw count and as an importance-weighted count; the hypothesis is supported only if the experimental-sciences count also rises.
+- The baseline period for P6 ends on the preregistration date; candidate events before that date are logged in `ai-attribution/` as baseline events.
+
 ---
 
 ## Open items not yet decided

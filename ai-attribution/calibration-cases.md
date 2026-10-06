@@ -98,13 +98,27 @@ None of these is a primary scientific source. No publication, preprint or method
 
 ---
 
-## Case 5 — Algorithmic complexity result (6 October 2026) — pending identification
+## Case 5 — Truly subquadratic 3SUM and truly subcubic APSP (October 2026)
 
-**Added:** 6 October 2026.
+**Added:** 6 October 2026 (first reported on X by Carlos Santana, @DotCSV; paper identified the same day). **Conflict of interest:** the first coder is a Claude model and the algorithm was found by a Claude model; the human coding must be done first.
 
-**Source (secondary):** Carlos Santana (@DotCSV) on X, 6 October 2026: a paper reports that Claude crossed a theoretical barrier in algorithmic complexity that many works had assumed but not proven; the improvement is described as very small in magnitude but theoretically important, according to people in the field.
+**Source (primary):** J. Alman and V. Vassilevska Williams, ["Truly Subquadratic 3SUM and Truly Subcubic APSP via Triangles in Sparse Lopsided Graphs"](https://arxiv.org/abs/2610.06783), arXiv:2610.06783, submitted 5 October 2026; Lean formalization at `github.com/anthropics/formal-math` (folder `3sum-apsp`). Not yet peer reviewed.
 
-**Status:** the paper has not yet been identified, so the case is **not coded**. Under refinement 1 below, a social-media report is a claim until the publication is found.
+**What was done:** the first polynomial improvements over the textbook algorithms for 3SUM ($O(n^{1.9992})$) and All-Pairs Shortest Paths ($O(n^{2.9995})$) with polynomially bounded integers. This **refutes the 3SUM and APSP hypotheses**, two of the central conjectures of fine-grained complexity, and, through known reductions, the Exact Triangle and Zero-Weight $k$-Clique hypotheses and several related conjectures. The improvement in the exponent is tiny; its theoretical importance is large, because many conditional lower bounds were built on these hypotheses.
+
+**Roles, as stated in the paper's "Acknowledgments and Methodology":**
+
+- An Anthropic employee used an internal research model to investigate open problems in cryptography. The model was asked to verify and improve constructions based on the hardness of Zero-$k$-Clique, and **instead developed this algorithm**, first for the average case and then for the worst case, in a session of 16 million output tokens **with no human input**.
+- Anthropic shared the algorithm with the two authors (leading researchers in the field) in September 2026. The authors understood, simplified, strengthened and extended it, derived further consequences (including the data-structure version) and wrote the paper. They state that they take full responsibility for it and used Claude for writing, figures and checking details.
+- After the paper was written, an internal model certified the main theorems in Lean 4 with Mathlib.
+
+**Provisional level:** $AI_4$ for the core discovery. The model was not given this problem: it chose the target itself, constructed the algorithm and established its consequence for the hypotheses, without human input. Under rule 2, this is the clearest case so far of AI proposing the target rather than searching a human-chosen space. The extensions in the paper are human or joint work.
+
+**Domain group:** (a) mathematics and formal sciences. **Importance grade (provisional):** 3 — it refutes central hypotheses of a field, although the quantitative gain is small.
+
+**Counts toward P6?** As a pre-freeze **baseline** event, once (a) the result survives expert scrutiny or peer review, and (b) humans confirm that the Lean statements match the theorems (rule 6). The authors' own verification is strong evidence but they are not independent of the paper.
+
+**Why it matters for calibration:** the human authors are named on the paper while the core discovery is attributed to an AI system in the methodology. Coding from the author list alone would miss it; coding from the methods and acknowledgments, as the protocol requires, catches it.
 
 ---
 

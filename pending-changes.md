@@ -5,6 +5,5 @@ All changes previously listed here (items 1–10) were merged into **v0.3.3** on
 ## Open items
 
 - **ER-100 outcome file.** After 8 October 2026, record the result in `forecasts/er100-2026-10-08-outcome.md` and score predictions E1–E8 (see [`forecasts/er100-2026-10-08.md`](./forecasts/er100-2026-10-08.md)).
-- **Human second coder** for the AI attribution calibration cases in [`ai-attribution/`](./ai-attribution/calibration-cases.md), starting with cases 2 and 4, which carry a conflict of interest.
-- **Identify the paper** behind calibration case 5 (algorithmic complexity result reported on 6 October 2026).
+- **Human second coder** for the AI attribution calibration cases in [`ai-attribution/`](./ai-attribution/calibration-cases.md), starting with cases 2, 4 and 5, which carry a conflict of interest.
 - **Preregistration.** Candidate $AI_3$/$AI_4$ events before the freeze enlarge the P6 baseline; the freeze should not be delayed without reason.

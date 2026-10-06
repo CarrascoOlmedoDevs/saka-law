@@ -4,7 +4,7 @@
 
 **A framework for measuring recursive technological acceleration and its implications for biomedical longevity**
 
-Version 0.3.2 — 2 October 2026
+Version 0.3.3 — 6 October 2026 (latest archived release on Zenodo: v0.3.2)
 
 This repository contains a conceptual forecasting paper developed around a proposed idea called the **Saka Law of Recursive Technological Acceleration**.
 
@@ -33,8 +33,8 @@ The longevity component asks a narrower question: **can medical progress increas
 
 - [paper.md](./paper.md) — full conceptual paper.
 - [model-spec.md](./model-spec.md) — equations, variables, proposed update procedure and candidate data sources (Section 13).
-- [Saka_Law_v0.3.2.pdf](./Saka_Law_v0.3.2.pdf) — PDF of the paper with the specification as appendix.
-- [pending-changes-v0.3.3.md](./pending-changes-v0.3.3.md) — changes agreed since v0.3.2, to be merged at the next release.
+- [Saka_Law_v0.3.3.pdf](./Saka_Law_v0.3.3.pdf) — PDF of the paper with the specification as appendix.
+- [pending-changes.md](./pending-changes.md) — open items and changes agreed since the last version.
 - [forecasts/](./forecasts) — dated pre-commitments, e.g. how the ER-100 interim data (8 Oct 2026) will be read.
 - [ai-attribution/](./ai-attribution) — calibration cases for the AI₀–AI₄ attribution scale.
 - [LICENSE](./LICENSE) — CC BY 4.0.
@@ -66,13 +66,12 @@ For now cite as:
 
 To cite the latest version instead of this specific one, use the concept DOI [10.5281/zenodo.23092957](https://doi.org/10.5281/zenodo.23092957).
 
-## What changed in v0.3.2
+## What changed in v0.3.3
 
-- The hypothesis test (P2) now separates resource inputs (compute, energy, data, manufacturing) from capabilities, so an investment boom alone cannot count as acceleration.
-- P4 now requires AI autonomy to *accelerate* (shorter doubling time), not just to keep growing exponentially.
-- The longevity-escape-velocity proxy is normalized by the age gradient of healthy-life expectancy, making the period and individual definitions agree.
-- Research productivity is measured against total research input including compute and automation.
-- Multiple-comparison control and a power analysis are required before preregistration.
+- Translation stages and evidence are now tracked per intervention *and indication* (a drug can be approved for one use and unproven for ageing).
+- Young technologies are compared with others at the same age, not only with their own short history.
+- Clearer rules for deciding how much of a discovery is due to AI, plus a domain split and importance grade for counting AI discoveries (P6).
+- New candidate data: cost of a fixed level of AI capability; power electronics.
 
 See the changelog at the end of [paper.md](./paper.md) for the full list.
 

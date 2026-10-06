@@ -1,7 +1,7 @@
 # The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity
 
 **Javier Carrasco ("Saka")**  
-Version 0.3.2 — 2 October 2026  
+Version 0.3.3 — 6 October 2026  
 Conceptual / forecasting paper — not peer reviewed
 
 ## Abstract
@@ -25,6 +25,8 @@ Between the mid-1980s and the mid-2020s, computing, genomic measurement, communi
 In 2026 several signals motivate examining this possibility. Frontier AI training compute continues to rise rapidly; algorithmic efficiency is improving; the stock of AI compute is expanding; autonomous task horizons are being measured over progressively longer tasks; self-driving laboratories are evolving from narrow automation toward systems that can propose, execute and interpret experiments; and AI systems are beginning to contribute to frontier mathematical research.
 
 For example, on 8 September 2026 OpenAI published an AI-generated proof of finite-time blowup (singularity formation) for the three-dimensional incompressible Navier–Stokes equations, addressing the Millennium Prize Problem, together with a Lean formalization [1, 2]. The result concerns the **forced** problem: a smooth solution starting from rest and driven by a smooth external force. The official Clay formulation accepts such a breakdown as one of its four alternative resolutions, but the behaviour of the unforced equations remains open. At the time of writing, human experts still need to confirm that the formalized statement is equivalent to the problem as posed, and the Clay Mathematics Institute has not awarded the prize. It is best treated as evidence of a new research-capability regime, not as proof that all scientific problems can now be rapidly solved.
+
+It is not an isolated case. In August 2026 a Claude model raised the proven lower bound on the proportion of Riemann zeta zeros on the critical line from 41.6% to 67.2%, with a Lean formalization [27]; in September 2026 another produced a complete formalization of the proof of Fermat's Last Theorem [28], which verifies known mathematics rather than discovering new results. Mathematics is, however, the domain in which AI can work without physical validation; Section 9 explains why such results are counted separately from the experimental sciences.
 
 The central thesis of this paper is therefore modest but consequential:
 
@@ -61,6 +63,8 @@ where $A$ is the stock of knowledge, $R$ research effort and $\phi$ the strength
 ### 3.1 AI resources are growing rapidly
 
 Epoch AI reports that frontier language-model training compute has grown at roughly 5× per year since 2020, while the total stock of AI compute has grown around 3.4× per year since 2022. The same source estimates pre-training compute efficiency improving by roughly 3× per year [15].
+
+The cost of reaching a *fixed* level of performance on mathematical and scientific reasoning benchmarks fell by about 47% per quarter (roughly 13× per year) from 2023, which Epoch AI reports as about six times faster than the fall in the cost of compute [26]. Section 6 explains why such a comparison between a three-year-old technology and decades-old ones overstates the contrast.
 
 These variables should not be interpreted as equivalent to intelligence. They are inputs into an innovation process.
 
@@ -165,7 +169,9 @@ Potential HTAB series include:
 - photovoltaic module cost per watt;
 - telecommunications bandwidth and cost;
 - industrial robot density;
-- launch cost and annual mass to orbit.
+- launch cost and annual mass to orbit;
+- power-electronics cost per watt and conversion efficiency (silicon, SiC, GaN);
+- cost of a fixed level of AI performance [26].
 
 **Selection bias.** Every series above is one that is already known to have improved dramatically. A baseline built only from successes will overstate historical growth in some respects and hide stagnation in others. The HTAB should therefore also include domains that slowed or stalled, for example new drugs approved per unit of R&D spending [7], crop yields, transport speed, and construction productivity. The weights $w_i$ and the list of series must be fixed before current data are compared with them.
 
@@ -182,6 +188,8 @@ H_0 : k_{current} = k_{historical},
 $$
 
 against which a modern acceleration regime can be tested.
+
+**Maturity.** Most technologies improve fastest early in their life: cost falls with cumulative production (Wright's law [29]), and the first doublings of production come quickly. DNA sequencing, for example, fell much faster than Moore's law in the first years of next-generation sequencing. A comparison between a young technology and mature ones therefore mixes two effects: a possible change of regime, and an ordinary early-stage learning curve. For each HTAB series the framework records its **introduction date** and, where available, its **cumulative production**, so that series can also be compared at the same stage of maturity (Section 6).
 
 ---
 
@@ -208,6 +216,14 @@ Interpretation:
 - $TAR < 1$: technological growth slower than the historical baseline;
 - $TAR \approx 1$: similar to the historical baseline;
 - $TAR > 1$: accelerated relative to baseline.
+
+**Calendar-aligned and maturity-aligned TAR.** The ratios above are *calendar-aligned*: each series is compared with its own past. For a technology too young to have a past of its own, the comparison is instead *maturity-aligned*: its current log-growth rate is divided by the rates of the other HTAB series over the **same number of years since their introduction**, or over the same multiples of cumulative production where those data exist:
+
+$$
+TAR_i^{mat}(t) = \frac{k_{i,current}(t)}{\bar k_{HTAB}(a_i)},
+$$
+
+where $a_i$ is the age of technology $i$ and $\bar k_{HTAB}(a)$ the weighted average log-growth rate of the HTAB series at age $a$. Both forms are reported. A claim that a young technology has entered an accelerated regime requires $TAR_i^{mat} > 1$, not only a high calendar-aligned rate. The fall in the cost of AI capability [26], with three years of data, is the motivating case.
 
 Because $k_{current}$ is estimated on short windows, it is noisy. TAR must always be reported with an uncertainty interval, and a claim of acceleration requires the lower bound of that interval to exceed 1. A sustained $TAR > 1$ across independent domains would be much stronger evidence than a short-lived burst in a single field.
 
@@ -245,7 +261,7 @@ $$
 A_t = \prod_k a_{k,t}^{\,v_k}, \qquad \sum_k v_k = 1,
 $$
 
-with candidate components: autonomous task horizon (METR); research-level mathematics benchmarks (e.g. FrontierMath); formal theorem proving (share of target statements with machine-checked proofs); scientific hypothesis generation, scored by later experimental confirmation; experimental planning in the wet-lab sciences; and coding. The sub-weights $v_k$ are fixed at preregistration, and results are reported both for the composite and for each component.
+with candidate components: autonomous task horizon (METR); research-level mathematics benchmarks (e.g. FrontierMath); formal theorem proving (share of target statements with machine-checked proofs); scientific hypothesis generation, scored by later experimental confirmation; experimental planning in the wet-lab sciences; coding; and the **cost of a fixed capability level** [26], which measures how cheaply a given level of reasoning can be bought rather than how high the frontier is. The sub-weights $v_k$ are fixed at preregistration, and results are reported both for the composite and for each component. Large formalization efforts of *known* results (for example [28]) are recorded under formal theorem proving, as capability events; they are not discoveries (Section 9).
 
 ### 7.2 Aggregation
 
@@ -314,7 +330,7 @@ $BPI_t \in [0,1]$ represents constraints that are **not already measured** by th
 - poor scientific reproducibility;
 - safety limitations;
 - capital constraints;
-- geopolitical disruption;
+- geopolitical disruption, including concentration of critical-material supply (for example gallium for GaN power devices, whose exports have been restricted);
 - diminishing returns to scaling.
 
 Energy, fabrication and translation limits are already represented by $E$, $M$ and $L$ and must not be counted again in BPI.
@@ -327,7 +343,7 @@ $$
 
 ### 8.2 Evidence Maturity Score (EMS) — intervention level
 
-A preclinical result should not carry the same forecasting weight as a replicated human endpoint. EMS is a property of a specific intervention or claim, not of the technological system as a whole, so it is **not** multiplied into $F^{sys}_t$. It is used instead to weight evidence when updating the arrival hazards of Section 12.
+A preclinical result should not carry the same forecasting weight as a replicated human endpoint. EMS is a property of a specific intervention *for a specific indication* (Section 10), not of the technological system as a whole, so it is **not** multiplied into $F^{sys}_t$. It is used instead to weight evidence when updating the arrival hazards of Section 12.
 
 A provisional ordinal scale is:
 
@@ -388,6 +404,20 @@ An AI system producing one million low-quality hypotheses is not scientific acce
 
 Levels are assigned from author-contribution statements (e.g. CRediT roles) and methods sections by two independent coders blind to the prediction, with inter-rater agreement (Cohen's $\kappa$) reported. Disagreements are resolved to the lower level. Only $AI_3$ and $AI_4$ discoveries count toward P6.
 
+**Coding rules.** Worked calibration cases (repository folder `ai-attribution/`) led to the following rules:
+
+1. *Unit of analysis.* The scale codes discoveries documented in a publication or preprint. Statements in interviews, blogs or social media about how a group uses AI are recorded as **claims** and are not coded, however specific they sound.
+2. *Search space.* If AI generates or ranks candidates within a target space chosen by humans, the maximum level is $AI_2$. $AI_3$ requires that AI proposed the hypothesis or target itself, not only the best item within a human-defined search.
+3. *Speed claims.* Statements about how long a piece of work "would have taken" are not evidence. Acceleration enters the framework only as SCT or $Q_t$ measured from dated records.
+4. *Source quality.* Each coded discovery records whether its sources are primary (paper, preprint, registry, formal proof) or secondary (press, interview, social media). Only primary sources can support a level above $AI_1$.
+5. *Formalization is not discovery.* Formalizing a known result is a capability event for the formal-theorem-proving component of $A$, not a discovery.
+6. *Replication of formal proofs.* A machine-checked proof counts as replication for P6 only after humans have confirmed that the formal statement matches the claimed theorem.
+7. *Conflicts of interest.* If an AI system used as a coder comes from the same developer as the system being coded, the case is flagged and the human coding is done first.
+
+**Domain and importance.** Each discovery is assigned to one of three domain groups—(a) mathematics and formal sciences, (b) computational sciences, (c) experimental sciences—because AI can work without physical validation only in (a) and, potentially, in (b); a pooled count would be dominated by mathematics. Each discovery also receives an **importance grade** by the same two-coder procedure: 1 = incremental improvement of a known bound or method; 2 = resolution of a recognized open problem; 3 = resolution of a central problem of the field. P6 is reported as a raw count and as an importance-weighted count, by domain group.
+
+**Baseline events.** Candidate $AI_3$/$AI_4$ discoveries that occur before the preregistration is frozen are logged as baseline events. Several have occurred in mathematics in the months before this version (Section 1), which raises the baseline against which P6 must "at least double"; the baseline period ends on the preregistration date.
+
 ---
 
 ## 10. Longevity Translation Index (LTI)
@@ -402,11 +432,13 @@ $$
 
 where $L_0$ = hypothesis, $L_1$ = in vitro, $L_2$ = animal, $L_3$ = large animal, $L_4$ = Phase I, $L_5$ = Phase II, $L_6$ = Phase III, $L_7$ = approval, and $L_8$ = clinically meaningful or mortality benefit.
 
+**Unit: intervention × indication.** An LTI level belongs to the pair *(intervention, indication)*, not to the intervention alone. The same drug can be at very different levels for different questions. Semaglutide, for example, has demonstrated clinical benefit ($L_8$) in obesity and cardiovascular risk, while the evidence that it slows *ageing* is at $L_2$–$L_3$: a lifespan effect in mice confounded by weight loss, and effects on epigenetic clocks in one special population that were not seen in healthy older adults. EMS and the readiness factor $G_j$ (Section 12) are likewise indexed by the pair.
+
 The model should estimate transition probabilities and transition times between levels, using historical baselines such as [21].
 
 Two methodological requirements apply to these estimates and to predictions P7 and P8:
 
-- **Composition bias.** A change in the mix of programmes can move averages without any change in the process: if many simple drugs and few oncology drugs enter development, median time to approval falls even if nothing improved. Comparisons are therefore made *within* strata of the same therapeutic area and the same modality (small molecule, biologic, cell therapy, gene therapy, etc.), between cohorts defined by the year of IND filing, and then combined with fixed stratum weights.
+- **Composition bias.** A change in the mix of programmes can move averages without any change in the process: if many simple drugs and few oncology drugs enter development, median time to approval falls even if nothing improved. Comparisons are therefore made *within* strata of the same therapeutic area and the same modality (small molecule, biologic, cell therapy, gene therapy, etc.), between cohorts defined by the year of IND filing, and then combined with fixed stratum weights. **Repurposed drugs**—already approved for another indication—are analysed as a separate stratum, because they skip early phases and would otherwise make translation look faster by construction.
 - **Censoring.** Many programmes in recent cohorts will still be unresolved when a window closes. Excluding them would bias recent times downward (only fast successes are observed). Times to approval are therefore estimated with survival analysis—Kaplan–Meier curves and Cox models with therapeutic area and modality as covariates—and phase progression with a multistate model ($L_4 \rightarrow L_5 \rightarrow L_6 \rightarrow L_7$, with failure as a competing absorbing state).
 
 A major acceleration in ageing-biology papers with no reduction in $L_1 \rightarrow L_8$ translation time, and no improvement in transition probabilities, would argue against strong biomedical recursive acceleration.
@@ -465,7 +497,7 @@ $$
 
 If earlier interventions preserve enough function to reach later, more capable interventions, a ladder effect emerges.
 
-For intervention class $j$, define the arrival hazard of clinical availability:
+For intervention class $j$—understood as a pair (intervention class, indication), as in Section 10—define the arrival hazard of clinical availability:
 
 $$
 \lambda_j(t) = \lambda_{0,j} \left[ F^{sys}_t \right]^{\alpha_j} G_j(t),
@@ -481,7 +513,7 @@ $$
 
 Population impact is then $P_j(T)$ multiplied by the class's projected $DAI_j$.
 
-In version 0.3.2, $\lambda_{0,j}$, $\alpha_j$ and $G_j$ are not estimated. Doing so requires the LTI transition data described in Section 10. This should be interpreted as technology-arrival forecasting, not as a personalized survival probability.
+In version 0.3.3, $\lambda_{0,j}$, $\alpha_j$ and $G_j$ are not estimated. Doing so requires the LTI transition data described in Section 10. This should be interpreted as technology-arrival forecasting, not as a personalized survival probability.
 
 ---
 
@@ -530,7 +562,7 @@ A reasonable scenario family for FTAF should include:
 - **central:** sustained AI/science acceleration with progressively declining growth rates;
 - **aggressive:** major breakthroughs in AI, automation, energy or manufacturing that extend the high-growth regime.
 
-Version 0.3.2 does not attach numbers to these scenarios. They will be quantified once the proxies of Section 7.1 have been populated.
+Version 0.3.3 does not attach numbers to these scenarios. They will be quantified once the proxies of Section 7.1 have been populated.
 
 The central qualitative expectation for 2046 is not "immortality". It is increased probability of:
 
@@ -571,7 +603,7 @@ The framework therefore treats "systemic rejuvenation" and "longevity escape vel
 
 The qualitative predictions of version 0.1 are replaced by dated, quantitative ones.
 
-**This version is not the preregistration.** Version 0.3.2 fixes the *form* of each prediction and the rule for deriving its threshold, but not the thresholds themselves. The preregistration is made when that rule has been applied to historical data and the resulting numbers are frozen, with a timestamp, in a public file (planned: `forecasts/preregistration-2026.json`), before any data from the tested windows are examined.
+**This version is not the preregistration.** Version 0.3.3 fixes the *form* of each prediction and the rule for deriving its threshold, but not the thresholds themselves. The preregistration is made when that rule has been applied to historical data and the resulting numbers are frozen, with a timestamp, in a public file (planned: `forecasts/preregistration-2026.json`), before any data from the tested windows are examined.
 
 **Windows.** Each window starts on the date the preregistration is frozen, not on 1 January 2026; data observed before that date are used only to estimate baselines. The window labels below (2026–2031, 2026–2036) are nominal and assume a freeze in late 2026.
 
@@ -597,9 +629,11 @@ The preregistered threshold is the larger of the two. This turns the predictions
 | P3 | Research productivity reverses | 2026–2036 | Research productivity (in the sense of [6]), measured against $R^{total}$ (Section 4), rises in at least 2 of the domains studied there |
 | P4 | Autonomy accelerates | 2026–2031 | The METR 50% time-horizon doubling time over the window is **shorter** than over the pre-freeze baseline period, with the 90% interval of their ratio below 1; and the non-software components of the composite $A$ index keep rising |
 | P5 | Faster experimental loops | 2026–2031 | Median SCT falls by at least 50% in at least 2 tracked self-driving-lab domains, with no fall in $Q_t$ |
-| P6 | Replicated AI discoveries | 2026–2031 | The annual number of independently replicated discoveries graded $AI_3$ or $AI_4$ (Section 9) at least doubles **and** exceeds a preregistered absolute minimum, so that a change from a near-zero base (e.g. 1 to 2) cannot satisfy it |
-| P7 | Faster translation | 2026–2036 | Median IND-to-approval time, estimated by survival analysis within therapeutic area × modality strata (Section 10), falls by at least 20% relative to 2015–2025 IND cohorts in at least one therapeutic area |
-| P8 | Better clinical success | 2026–2036 | Phase I-to-approval success probability, estimated with a multistate model within therapeutic area × modality strata (Section 10), improves by at least 30% relative to [21] in at least one therapeutic area |
+| P6 | Replicated AI discoveries | 2026–2031 | The annual number of independently replicated discoveries graded $AI_3$ or $AI_4$ (Section 9), relative to the baseline frozen at preregistration, at least doubles **and** exceeds a preregistered absolute minimum, in both the raw and the importance-weighted count; **and** the count in the experimental sciences rises. A rise confined to mathematics is reported as partial support only |
+| P7 | Faster translation | 2026–2036 | Median IND-to-approval time, estimated by survival analysis within therapeutic area × modality strata, excluding repurposed drugs (Section 10), falls by at least 20% relative to 2015–2025 IND cohorts in at least one therapeutic area |
+| P8 | Better clinical success | 2026–2036 | Phase I-to-approval success probability, estimated with a multistate model within therapeutic area × modality strata, excluding repurposed drugs (Section 10), improves by at least 30% relative to [21] in at least one therapeutic area |
+
+**Exploratory statistic (not a prediction).** For the cost of a fixed AI capability level [26], the rate of decline is fastest when a level first becomes reachable and slows afterwards; that within-level slowdown is an ordinary learning curve. The statistic relevant to the hypothesis is the **debut rate across cohorts**: whether the initial rate of cost decline rises for successive performance levels as they appear. It is reported alongside P2 and P4 but, because the series is short, it is marked exploratory and not counted in the multiplicity correction.
 
 **Refuting outcomes.** The hypothesis should be weakened or rejected as a useful forecasting framework if, by the end of the relevant window:
 
@@ -764,7 +798,25 @@ The hypothesis will become scientifically useful only if its metrics are populat
 
 25. International Energy Agency. **Energy and AI.** 2025. https://www.iea.org/reports/energy-and-ai
 
+26. Epoch AI. **The plunging price of thought.** 22 September 2026. https://epoch.ai/publications/the-plunging-price-of-thought
+
+27. Anthropic. **Claude has improved on a longstanding lower bound for the fraction of zeros of the Riemann zeta function that satisfy the Riemann hypothesis.** 10 August 2026. https://www.anthropic.com/research/riemann-zeta
+
+28. Anthropic. **Formalizing Fermat's Last Theorem.** 4 September 2026. https://www.anthropic.com/research/formalizing-fermats-last-theorem
+
+29. Wright, T. P. **Factors affecting the cost of airplanes.** _Journal of the Aeronautical Sciences_ 3(4), 122–128 (1936).
+
 ---
+
+## Changes from version 0.3.2
+
+- **LTI, EMS and $G_j$ indexed by intervention × indication** (Sections 8.2, 10, 12), motivated by GLP-1 receptor agonists. Repurposed drugs form a separate stratum in P7 and P8.
+- **Maturity-aligned HTAB and TAR** (Sections 5, 6): series record introduction date and cumulative production; $TAR_i^{mat}$ compares a young technology with others at the same age. Motivated by the reported fall in the cost of AI capability [26].
+- **Cost of a fixed capability level** added as a sub-measure of $A$; an exploratory **debut-rate** statistic added to Section 17.
+- **AI attribution coding rules** (Section 9): unit of analysis, search-space rule, speed claims, source quality, formalization, replication of formal proofs, conflicts of interest. Developed from calibration cases in the repository.
+- **P6** now counts from a baseline frozen at preregistration, by domain group and with an importance grade, and requires a rise in the experimental sciences for full support.
+- HTAB candidate series: power electronics and cost of AI capability. BPI: critical-material supply concentration.
+- Section 1 notes other AI results in mathematics (August–September 2026).
 
 ## Changes from version 0.3.1
 

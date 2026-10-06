@@ -1,4 +1,4 @@
-# Saka Forecasting Engine — Model Specification v0.3.2
+# Saka Forecasting Engine — Model Specification v0.3.3
 
 ## 1. State vector
 
@@ -32,7 +32,7 @@ $$
 A_t = \prod_k a_{k,t}^{\,v_k}, \qquad \sum_k v_k = 1,
 $$
 
-over normalized sub-measures $a_k$: autonomous task horizon (METR); research-level mathematics (e.g. FrontierMath); formal theorem proving; scientific hypothesis generation scored by later experimental confirmation; wet-lab experimental planning; coding. Fix $v_k$ at preregistration; report the composite and each component.
+over normalized sub-measures $a_k$: autonomous task horizon (METR); research-level mathematics (e.g. FrontierMath); formal theorem proving; scientific hypothesis generation scored by later experimental confirmation; wet-lab experimental planning; coding; cost of a fixed capability level (Epoch AI 2026). Fix $v_k$ at preregistration; report the composite and each component. Formalizations of known results are capability events for formal theorem proving, not discoveries.
 
 ## 2. Gross acceleration index
 
@@ -98,7 +98,7 @@ $$
 
 The three correction terms act at different levels.
 
-**System level.** $BPI_t \in [0,1]$ is the Bottleneck & Risk Index. It covers only constraints not already measured by $X_t$ (e.g. reproducibility, safety, capital, geopolitics, regulation beyond $L$). Energy, fabrication and translation limits are in $E$, $M$ and $L$ and must not be counted again.
+**System level.** $BPI_t \in [0,1]$ is the Bottleneck & Risk Index. It covers only constraints not already measured by $X_t$ (e.g. reproducibility, safety, capital, geopolitics including critical-material supply concentration such as gallium, regulation beyond $L$). Energy, fabrication and translation limits are in $E$, $M$ and $L$ and must not be counted again.
 
 $$
 F^{sys}_t = FTAF_t \, (1 - BPI_t)
@@ -141,6 +141,14 @@ $$
 
 Domain-level predictions (P1) use $TAR_i$. For series whose historical rate is near zero or negative, report the difference $k_{i,current} - k_{i,historical}$ instead of the ratio.
 
+**Maturity alignment.** Record each series' introduction date and, where available, cumulative production. For a young technology, also report
+
+$$
+TAR_i^{mat}(t) = \frac{k_{i,current}(t)}{\bar k_{HTAB}(a_i)},
+$$
+
+with $a_i$ the technology's age and $\bar k_{HTAB}(a)$ the weighted HTAB log-growth rate at the same age (or the same multiples of cumulative production; Wright 1936). Acceleration of a young technology requires $TAR_i^{mat} > 1$, not only a high calendar-aligned $TAR_i$.
+
 Interpretation:
 
 - $TAR < 1$: slower than historical baseline
@@ -151,6 +159,7 @@ Requirements:
 
 - The series list must include domains that stagnated (e.g. drugs approved per R&D dollar, crop yields, transport speed, construction productivity), not only known success stories.
 - Series and weights $w_i$ are fixed before current data are compared.
+- Candidate series include power-electronics cost per watt and efficiency (Si, SiC, GaN) and the cost of a fixed AI capability level.
 - $TAR$ is always reported with an uncertainty interval; acceleration requires its lower bound to exceed 1.
 
 ### 4.1 Research productivity with automated inputs
@@ -236,6 +245,18 @@ Grade each discovery by the role of AI in its intellectual work:
 
 Assigned from CRediT statements and methods sections by two independent coders blind to the prediction; report Cohen's $\kappa$; resolve disagreements to the lower level. Only $AI_3$ and $AI_4$ count toward P6.
 
+Coding rules (from calibration cases in `ai-attribution/`):
+
+1. Code discoveries documented in a publication or preprint; interview, blog and social-media statements are claims, not coded.
+2. AI ranking candidates within a human-chosen target space: maximum $AI_2$.
+3. Speed claims are not evidence; only measured SCT or $Q_t$.
+4. Record source quality; only primary sources support levels above $AI_1$.
+5. Formalizing a known result is a capability event for $A$, not a discovery.
+6. A machine-checked proof counts as replication only after humans confirm the formal statement matches the theorem.
+7. Flag conflicts of interest between an AI coder and the coded system; human coding first.
+
+Each discovery is also assigned a domain group—(a) mathematics and formal sciences, (b) computational sciences, (c) experimental sciences—and an importance grade (1 incremental, 2 recognized open problem, 3 central problem), by the same two-coder procedure. Events before the preregistration date are logged as baseline events.
+
 ## 7. Longevity Translation Index
 
 Track progression of an intervention through
@@ -250,7 +271,8 @@ The model should estimate transition hazards and transition times between levels
 
 Requirements (also for P7, P8):
 
-- **Composition bias:** compare within therapeutic area × modality strata and IND-filing-year cohorts; combine strata with fixed weights.
+- **Unit:** LTI level, EMS and $G_j$ belong to the pair *(intervention, indication)*, not to the intervention alone (e.g. semaglutide: $L_8$ for obesity and cardiovascular risk, $L_2$–$L_3$ for slowing ageing).
+- **Composition bias:** compare within therapeutic area × modality strata and IND-filing-year cohorts; combine strata with fixed weights. Repurposed drugs form a separate stratum.
 - **Censoring:** estimate time to approval with Kaplan–Meier and Cox models (covariates: area, modality); model phase progression $L_4 \rightarrow L_5 \rightarrow L_6 \rightarrow L_7$ as a multistate model with failure as a competing absorbing state.
 
 ## 8. Evidence Maturity Score
@@ -300,7 +322,7 @@ This is a forecasting construct, not an accepted clinical metric.
 
 ## 10. Technology Survival Ladder
 
-For milestone therapy class $j$, define the time-dependent arrival hazard
+For milestone therapy class $j$—a pair (intervention class, indication)—define the time-dependent arrival hazard
 
 $$
 \lambda_j(t) = \lambda_{0,j} \left[ F^{sys}_t \right]^{\alpha_j} G_j(t)
@@ -338,7 +360,7 @@ Future versions should:
 
 ## 12. Falsification criteria
 
-v0.3.2 is **not** the preregistration: it fixes the form of each prediction and the threshold rule. The preregistration is the frozen, timestamped output of that rule (planned: `forecasts/preregistration-2026.json`), made before any data from the tested windows are examined. Each window starts on the freeze date; earlier data are used only for baselines. Window labels below are nominal, assuming a freeze in late 2026.
+v0.3.3 is **not** the preregistration: it fixes the form of each prediction and the threshold rule. The preregistration is the frozen, timestamped output of that rule (planned: `forecasts/preregistration-2026.json`), made before any data from the tested windows are examined. Each window starts on the freeze date; earlier data are used only for baselines. Window labels below are nominal, assuming a freeze in late 2026.
 
 Thresholds below are **placeholders**. Before preregistration, each is replaced by the larger of (1) the value exceeded with at most 5% probability under the historical regime, from the statistic's variability over past windows of equal length, and (2) the minimum scientifically or clinically relevant effect.
 
@@ -355,9 +377,11 @@ Report 50/80/90/95% intervals; the **90% interval** is the preregistered decisio
 | P3 | Research productivity reverses | 2026–2036 | Research productivity against $R^{total}$ (Section 4.1, Bloom et al. 2020 sense) rises in at least 2 of their domains |
 | P4 | Autonomy accelerates | 2026–2031 | METR 50% time-horizon doubling time over the window shorter than over the pre-freeze baseline (90% interval of the ratio below 1), and non-software components of $A$ rising |
 | P5 | Faster experimental loops | 2026–2031 | Median SCT falls $\geq$ 50% in at least 2 self-driving-lab domains, with no fall in $Q_t$ |
-| P6 | Replicated AI discoveries | 2026–2031 | Annual independently replicated $AI_3$/$AI_4$ discoveries (Section 6.1) at least double and exceed a preregistered absolute minimum |
-| P7 | Faster translation | 2026–2036 | Median IND-to-approval time (survival analysis, within area × modality strata) falls $\geq$ 20% vs 2015–2025 IND cohorts in at least one therapeutic area |
-| P8 | Better clinical success | 2026–2036 | Phase I-to-approval probability (multistate model, within strata) improves $\geq$ 30% vs Wong et al. 2019 in at least one area |
+| P6 | Replicated AI discoveries | 2026–2031 | Annual independently replicated $AI_3$/$AI_4$ discoveries (Section 6.1), relative to the baseline frozen at preregistration, at least double and exceed a preregistered absolute minimum, in raw and importance-weighted counts; and the experimental-sciences count rises (a rise confined to mathematics is partial support) |
+| P7 | Faster translation | 2026–2036 | Median IND-to-approval time (survival analysis, within area × modality strata, excluding repurposed drugs) falls $\geq$ 20% vs 2015–2025 IND cohorts in at least one therapeutic area |
+| P8 | Better clinical success | 2026–2036 | Phase I-to-approval probability (multistate model, within strata, excluding repurposed drugs) improves $\geq$ 30% vs Wong et al. 2019 in at least one area |
+
+**Exploratory statistic.** Debut rate of cost decline across successive AI performance levels (Epoch AI 2026): rising debut rates would indicate acceleration in AI efficiency; within-level slowdown is an ordinary learning curve. Reported with P2/P4, not counted in the multiplicity correction.
 
 The Saka Law should be weakened or rejected as a useful forecasting hypothesis if, by the end of the relevant window:
 
@@ -379,7 +403,7 @@ Sources are proposals; each must be fixed, with version and access date, at prer
 
 | Component | Candidate sources | Access |
 |---|---|---|
-| $A$ | METR time-horizon data; Epoch AI Benchmarking Hub (FrontierMath and others); formal-proof benchmarks (e.g. miniF2F, PutnamBench) | Open |
+| $A$ | METR time-horizon data; Epoch AI Benchmarking Hub (FrontierMath and others); formal-proof benchmarks (e.g. miniF2F, PutnamBench); Epoch AI, "The plunging price of thought" (cost of a fixed capability level, 2023–) | Open |
 | $C$ | Epoch AI Data Hub (notable models, ML hardware, compute stock); TOP500 | Open |
 | $E$ | Ember electricity data; IEA data-centre estimates; LBNL "Queued Up" interconnection-queue data | Ember and LBNL open; IEA partly |
 | $R$ | No central database; to be extracted from self-driving-lab publications in fixed domains | **To build** |
@@ -393,6 +417,8 @@ Sources are proposals; each must be fixed, with version and access date, at prer
 
 - Santa Fe Institute Performance Curve Database (the data behind Nagy et al. 2013 and Farmer & Lafond 2016).
 - Our World in Data technology series (transistors, solar, batteries, sequencing), with original sources.
+- Introduction dates and cumulative production for each series, for maturity-aligned TAR.
+- Power-electronics cost and efficiency (industry and IEA sources); cost of a fixed AI capability level (Epoch AI). Caveats for the latter: three years of data, benchmarks may be targeted in training, prices include margins, results range 43–58% per quarter by averaging method.
 - Stagnating domains: FAOSTAT crop yields; BLS construction productivity; Eroom's-law series (Scannell et al. 2012).
 - Bloom et al. (2020) replication package (openICPSR), needed for P3.
 

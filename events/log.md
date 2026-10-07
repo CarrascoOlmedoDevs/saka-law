@@ -28,8 +28,29 @@ Each entry gives the event, its primary source, the framework element it bears o
 | 2026-10-01 | ARDD 2026: FDA officials state that ageing and longevity will enter the FDA regulatory-science agenda; ageing not recognized as an indication; no accepted surrogate endpoint | [GeneOnline](https://www.geneonline.com/ardd-2026-can-aging-become-treatable-fda-and-researchers-start-building-the-evidence/) | LTI (indication), BPI | Logged |
 | 2026-10-05 | Alman & Vassilevska Williams: truly subquadratic 3SUM and subcubic APSP; core algorithm found by a Claude research model without human input | [arXiv:2610.06783](https://arxiv.org/abs/2610.06783) | P6 baseline (domain a, importance 3 provisional) | Calibration case 5 |
 | 2026-10-06 | OpenAI releases 722 manuscripts (372 result families) produced by an internal model; 162 papers with formalized main results; formal statements not yet human-reviewed | [github.com/openai/math](https://github.com/openai/math) | P6 baseline; verification as bottleneck ($Q_t$) | Batch entry below; pending changes 11–13 |
-| 2026-10-07 | ≈4,000 | 372 | 722 | 162 (185 main-result declarations) | 0 (catalogue review status: "unchecked") | 0 known | 0 known |
 | 2026-10-07 | Snapshot of AI-involved drug pipeline: ≈117 assets in trials (to Dec 2025), none approved by FDA as of Jul 2026; Phase I success higher, Phase II similar to conventional | [IntuitionLabs](https://intuitionlabs.ai/articles/ai-discovered-drugs-clinical-trials-2026) | P7/P8 comparison group | `data/ai-drug-pipeline.csv` |
+| 2026-10-07 | Independent partial checks of OpenAI family 003 (quasi-Riemann hypothesis, ℜs > 7/8): Section 20 exponent bookkeeping (34/34 exact) and Lemmas 4.2–4.4 (1,573 numerical comparisons) pass; Proposition 2.1 reviewed by hand; deep estimates (Sections 5–19) not checked. Fork isaksmith/math reports a statement-fidelity review and a local Lean build with standard axioms; clean-room Comparator run in progress | [`verification/openai-math-003/`](../verification/openai-math-003/); [isaksmith/math](https://github.com/isaksmith/math) | P6 baseline; verification latency (pending change 13) | Counters in batch entry |
+
+---
+
+## Batch entry: OpenAI mathematics collection (6 October 2026)
+
+**Source:** [github.com/openai/math](https://github.com/openai/math), initial commit 6 October 2026 (~22:00 UTC); README, `CONTENTS.md`, `lean/formalization.yaml`.
+
+**What it is.** Manuscripts produced by an unreleased internal OpenAI model during evaluation on open research problems. About 4,000 problems were posed; on average each result used about three hours of model compute; outputs were grouped into families and filtered by significance. Two results (a zero-free region for the Riemann zeta function, and the Hodge conjecture for CM abelian varieties) were produced outside this fixed procedure, and one write-up was edited by humans for readability. The README states that some unformalized results "could have issues".
+
+**Claimed results include** (unverified; listed only to show scale): the full Birch–Swinnerton-Dyer formula for elliptic curves over ℚ with Selmer corank 0 or 1 for some prime; symmetric and general Mahler conjectures; isomorphism of free group factors; Kaplansky's direct-finiteness conjecture in characteristic two; a zero-free region Re(s) > 11/12 for the Riemann zeta function.
+
+**Why it is logged as one batch, not coded case by case.** Coding hundreds of claims before the mathematical community has examined them would add noise, not information. What the framework needs is how many of these claims survive verification, and how fast.
+
+### Counters
+
+To be updated at each scheduled revision. "Human-verified" means that an independent expert or a peer-reviewed publication has confirmed the result, or that humans have confirmed that a formal statement matches the claimed theorem (attribution rule 6).
+
+| As of | Problems posed | Result families | Manuscripts | Papers with formalized main result | Formal statements human-reviewed | Families human-verified | Families withdrawn or found wrong |
+|---|---|---|---|---|---|---|---|
+| 2026-10-07 | ≈4,000 | 372 | 722 | 162 (185 main-result declarations) | 0 (catalogue review status: "unchecked") | 0 known | 0 known |
+| 2026-10-07 (later) | ≈4,000 | 372 | 722 | 162 (185 declarations); an independent count finds Lean docs for 235 families and no `sorry` | 1 partial: family 003, ζ and Dirichlet statements reviewed by one independent person (isaksmith); Hecke statement not yet | 0 (003 in progress: local Lean build OK with standard axioms; clean-room Comparator pending; partial lemma checks in `verification/openai-math-003/`) | 0 known |
 
 ### Reading under the framework
 

@@ -48,6 +48,18 @@ Each AI-originated discovery records a **feedback channel** (which part of the t
 
 **Application to case 5:** capability evidence (P6 candidate); feedback channel: algorithms for matrix products; adoption status: none; closed-loop evidence: no.
 
+## 15. Revisit the weight of space access ($S$) and its coupling with energy and compute
+
+**Motivation (7 Oct 2026):** Google's Project Suncatcher launched four TPUs to orbit (1 Oct 2026) to test solar-powered AI compute in space; Starship reached orbit (Flight 14, 28 Sep 2026) after demonstrating booster tower catches (since 2024) and an intact ship splashdown (Flight 13).
+
+**Problem:** v0.3.3 gives $S$ a weight of 0.05 and justifies it only as an expansion of *experimental* state space (microgravity, crystallization, organoids), with no link to the other components. If orbital compute powered by near-continuous sunlight becomes viable, space access becomes a possible route around the energy bottleneck ($E$) for compute ($C$). Under the CES aggregate, that coupling cannot be represented by a small fixed weight on an independent component.
+
+**Change (to be decided at the scheduled revision):**
+
+- Add **orbital compute capacity** (power or compute deployed in orbit) as a candidate proxy, recorded under $C$ and $E$ rather than only $S$.
+- Keep the experimental role of $S$ at its current weight, and test in the sensitivity analysis a variant where launch cost per kg enters the cost of $E$ for compute.
+- Define the **change-point signal** for $S$: reflight of a recovered orbital upper stage, and sustained launch cadence, not first orbit or splashdown alone. Track launch cost per kg against the threshold at which orbital compute is claimed to become competitive (to be sourced from Google's Suncatcher analysis, not assumed).
+
 ---
 
 ## Open items

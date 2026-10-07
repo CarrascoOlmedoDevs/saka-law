@@ -1,0 +1,20 @@
+primes tested: 35 norms up to 841
+
+PASS  L4.2  |gamma_j(p)| = 1, j=1..5:  35 ok, 0 failed
+PASS  L4.2  gamma_2(p)^3 = -alpha(p):  35 ok, 0 failed
+PASS  L4.2  gamma_1 gamma_2 = conj(H(4)) gamma_3 gamma_2^3:  35 ok, 0 failed
+PASS  L4.4  R(p,p) = gamma_3(p)^2 = chi_p(-1):  35 ok, 0 failed
+PASS  L4.4  G(p^3) = gamma_3(p):  32 ok, 0 failed
+PASS  L4.4  G(v^2) = chi_v(4)  (v = p):  35 ok, 0 failed
+PASS  L4.3  Gamma(c) four-term formula (random odd c):  300 ok, 0 failed
+PASS  L4.3  Gamma(c v^2) = Gamma(c):  36 ok, 0 failed
+PASS  L4.3  table Gamma(1)=1, Gamma(-1)=1, Gamma(lambda)=i, Gamma(-lambda)=-i:  1 ok, 0 failed
+PASS  L4.3  r((-1)^e l^f, (-1)^g l^h) = (-1)^(eh+fg+fh):  16 ok, 0 failed
+PASS  L4.4  sextic reciprocity chi_q(p) = r(p,q) chi_p(q)  (prime pairs):  351 ok, 0 failed
+PASS  L4.4  G(pq) = G(p) G(q) R(p,q):  351 ok, 0 failed
+PASS  (4.7) gamma_2(c)^3 = mu(c) alpha(c), c = pq:  40 ok, 0 failed
+PASS  (4.7) gamma_1 gamma_2 = mu alpha G, c = pq:  40 ok, 0 failed
+PASS  (4.7) G(c) = conj(chi_c(4)) gamma_3(c), |G(c)| = 1:  40 ok, 0 failed
+PASS  L4.4  sextic reciprocity, composite: chi_c(t) = r(t,c) chi_t(c):  191 ok, 0 failed
+
+ALL PASS

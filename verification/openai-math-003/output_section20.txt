@@ -1,0 +1,38 @@
+PASS h = 1 - lx + l
+PASS C(7/8) = 7/8 - 11/16 = 3/16
+PASS C_I(11/12) = 11/12 - 2/3 = 1/4
+PASS m_w = ly/20 = 23/960
+PASS m_z = h/600 = 13/9600
+PASS B0 = lx/2 + 1 + ly = 53/32
+PASS kappa = 3/4 + 2*Delta <= 5/6 for Delta <= 1/24
+PASS (20.4) first line == second line
+PASS (20.5) E(h) at floor = -7/1200
+PASS (20.6) h(17/50-1/6) - ly/2 = -79/800
+PASS small rows: -79/800 + 2*dmin = -63/800
+PASS (20.7) E(h) with R=1-delta, q=delta/2 equals -1/48 - delta/16
+PASS J = jy/108
+PASS Dx - Px = 1 + x - 8x^2/9 with y = 1/2 - x
+PASS -E* formula in proof of Lemma 20.2
+PASS 10368 J (-E*) = 2 jy[...] - 468(...)
+PASS ... = explicit quadratic in delta
+PASS (20.9) completion of the square identity
+PASS 176256 * 5/2 = 440640
+PASS 10368 * 17 = 176256 (49(3+5y)/(10368 v J) >= 49/(10368*17*J))
+grid min of -E* = 7/28608 = 0.0002446868008948546   claimed lower bound 49/440640 = 0.00011120188816267247
+PASS grid: -E* >= 49/440640 everywhere
+grid range of J = (35/54, 5/2) [0.6481481481481481, 2.5]
+PASS grid: 35/54 <= J <= 5/2
+PASS (20.11) E(1/2) = -529/2400 + 25 delta/96
+PASS (20.11) at delta=5/6: -529/2400 + 125/576 = -49/14400
+PASS 76/75 - 2/3*(1/50) = 1
+PASS slope R + delta/2 - 17/50 = 101/150 - delta/6
+PASS l/h = 8/39
+PASS 8/39 > 1/5 > 7/37
+PASS 5l - h = 1/48
+PASS 1/5 - 7/37 = 2/185 ; 8/39 - 7/37 = 23/1443
+PASS 33/50 - delta/2 >= 4/25 at delta = 5/6
+PASS 139/96 + 1/2 - 17/50 < 2
+PASS m_hi = (1 - h/4) Delta = 51/64 Delta
+PASS kappa_P = 7/16 * l/K = 7/(96K), and < 7/8 * l/K = 7/(48K)
+
+34/34 checks passed

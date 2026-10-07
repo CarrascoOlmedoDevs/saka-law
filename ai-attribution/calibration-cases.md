@@ -118,6 +118,8 @@ None of these is a primary scientific source. No publication, preprint or method
 
 **Counts toward P6?** As a pre-freeze **baseline** event, once (a) the result survives expert scrutiny or peer review, and (b) humans confirm that the Lean statements match the theorems (rule 6). The authors' own verification is strong evidence but they are not independent of the paper.
 
+**Feedback channel and adoption (pending change 14):** channel: algorithms for matrix products, a core operation of computation. Adoption: none. The gain is asymptotic and very small, and asymptotically faster matrix algorithms have historically not been used in practice; this is capability evidence, not closed-loop evidence.
+
 **Why it matters for calibration:** the human authors are named on the paper while the core discovery is attributed to an AI system in the methodology. Coding from the author list alone would miss it; coding from the methods and acknowledgments, as the protocol requires, catches it.
 
 ---

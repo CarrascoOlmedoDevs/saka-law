@@ -33,6 +33,21 @@ Items 1–10 were merged into **v0.3.3** on 6 October 2026; see "Changes from ve
 
 **Change:** for each candidate discovery in domain (a), record the claim date and the verification date, and report the distribution of **verification latency**. This is the mathematical analogue of Scientific Cycle Time and a direct measure of the validation bottleneck. A falling generation time with a constant or rising verification latency is evidence that the bottleneck has moved to validation, as predicted in Section 9.
 
+## 14. Evidence of a closed loop requires adoption and a measured gain
+
+**Motivation (7 Oct 2026):** calibration case 5 (3SUM/APSP, arXiv:2610.06783). The result improves the asymptotic cost of a matrix-product operation, which identifies a *possible* feedback channel (AI → mathematics → algorithms → cheaper compute → better AI). But the improvement is tiny in the exponent ($n^{1.9992}$ vs $n^2$; $n^{2.9995}$ vs $n^3$), and asymptotically faster matrix algorithms have historically not been used in practice because of their large constants. AI compute has become cheaper mainly through hardware, lower numerical precision, optimized kernels and compilers.
+
+**Problem:** the framework does not yet distinguish a discovery that *could* feed back into the production of technology from one that *has* done so. Without that distinction, any AI result touching computation could be read as evidence of recursion.
+
+**Change:** separate two kinds of evidence.
+
+- **Capability evidence:** an AI-originated discovery, coded on the $AI_0$–$AI_4$ scale and counted in P6.
+- **Closed-loop evidence:** the discovery has been (1) **adopted** in systems used to build technology — libraries, kernels, compilers, hardware design, laboratory protocols — and (2) that adoption produces a **measured gain** in the cost or speed of producing technology, for example in the cost of a fixed AI capability level, training or inference cost, or SCT in a tracked domain. The gain must be attributable to the adopted discovery, for example through a before-and-after comparison or the adopter's own benchmarks.
+
+Each AI-originated discovery records a **feedback channel** (which part of the technology-production process it could affect) and an **adoption status** (none / prototype / adopted in production, with date and source). Closed-loop evidence is reported separately from P6; the Saka Law's core claim — technology improving the process that produces technology — is supported most directly by closed-loop cases, not by the count of discoveries alone.
+
+**Application to case 5:** capability evidence (P6 candidate); feedback channel: algorithms for matrix products; adoption status: none; closed-loop evidence: no.
+
 ---
 
 ## Open items

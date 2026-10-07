@@ -35,6 +35,7 @@ The longevity component asks a narrower question: **can medical progress increas
 - [model-spec.md](./model-spec.md) — equations, variables, proposed update procedure and candidate data sources (Section 13).
 - [Saka_Law_v0.3.3.pdf](./Saka_Law_v0.3.3.pdf) — PDF of the paper with the specification as appendix.
 - [pending-changes.md](./pending-changes.md) — release policy, changes of method agreed since the last version, and open items.
+- [data/](./data) — tracking datasets, starting with a baseline of AI-involved drug candidates (comparison group for P7/P8).
 - [events/log.md](./events/log.md) — dated log of external events relevant to the framework. Logging an event does not change the paper.
 - [forecasts/](./forecasts) — dated pre-commitments, e.g. how the ER-100 interim data (8 Oct 2026) will be read.
 - [ai-attribution/](./ai-attribution) — calibration cases for the AI₀–AI₄ attribution scale.

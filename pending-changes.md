@@ -60,6 +60,19 @@ Each AI-originated discovery records a **feedback channel** (which part of the t
 - Keep the experimental role of $S$ at its current weight, and test in the sensitivity analysis a variant where launch cost per kg enters the cost of $E$ for compute.
 - Define the **change-point signal** for $S$: reflight of a recovered orbital upper stage, and sustained launch cadence, not first orbit or splashdown alone. Track launch cost per kg against the threshold at which orbital compute is claimed to become competitive (to be sourced from Google's Suncatcher analysis, not assumed).
 
+## 16. Separate regulatory from technological acceleration in P7 and P8
+
+**Motivation (7 Oct 2026):** FDA policy changes in 2026 — a stated default of one adequate and well-controlled trial plus confirmatory evidence (NEJM opinion, 18 Feb 2026, not yet formal guidance); the draft "plausible mechanism" framework for individualized therapies (23 Feb 2026); the National Priority Voucher pilot (target reviews of 1–2 months; seven approvals by May 2026); the phase-out of animal-testing requirements (from 2025). Critics warn of shifted safety evidence to the post-marketing phase and of institutional strain.
+
+**Problem:** P7 (faster translation) could be satisfied by lowering evidence requirements rather than by technology improving translation, and P8 (better clinical success) could be inflated by approvals on less evidence. Either would be a **false positive** for the Saka Law, whose claim is about technology improving the process that produces technology.
+
+**Change:**
+
+- Record the **regulatory route** of every approval and programme in the P7/P8 data (standard, accelerated, priority voucher, single-trial basis, plausible-mechanism, breakthrough/fast track) and stratify by it.
+- Use **AI-involved programmes as the treatment group** and conventional programmes in the same therapeutic area, modality, regulatory route and period as the comparison group (baseline list in `data/ai-drug-pipeline.csv`). Technological acceleration is the *difference* between the groups under the same rules; a fall in both reflects regulation.
+- Track **post-approval outcomes**: withdrawals, new boxed warnings and failed confirmatory trials, by regulatory route. A rise in these offsets any gain in P8.
+- Classify regulatory changes that are themselves **enabled by technology** (e.g. replacing animal tests with organoids or in-silico models; accepting digital-twin controls) separately: these count as technological acceleration, because the technology is what made the rule change possible.
+
 ---
 
 ## Open items

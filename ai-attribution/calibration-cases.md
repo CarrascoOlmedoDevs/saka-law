@@ -122,6 +122,12 @@ None of these is a primary scientific source. No publication, preprint or method
 
 ---
 
+## Batch: OpenAI mathematics collection (6 October 2026) — not coded case by case
+
+722 manuscripts in 372 result families, released with partial Lean formalization whose formal statements have not yet been human-reviewed. It is logged as a single baseline batch with verification counters in [`events/log.md`](../events/log.md) rather than coded here. Individual families will be coded once they are human-verified (pending change 11).
+
+---
+
 ## Refinements suggested by these cases (proposed for v0.3.3)
 
 1. **Unit of analysis.** The scale codes *discoveries documented in a publication or preprint*, not laboratories or claims. Statements in interviews, blogs or social media about how a group uses AI are recorded as **claims** and are not coded, however specific they sound.

@@ -77,7 +77,7 @@ Each AI-originated discovery records a **feedback channel** (which part of the t
 
 ## Open items
 
-- **ER-100 outcome file.** After 8 October 2026, record the result in `forecasts/er100-2026-10-08-outcome.md` and score predictions E1–E8 (see [`forecasts/er100-2026-10-08.md`](./forecasts/er100-2026-10-08.md)).
+- **ER-100 slides.** The outcome was scored on 8 October 2026 from the press release (`forecasts/er100-2026-10-08-outcome.md`). E4, E7 and E8 remain provisional until the conference slides or a publication are available.
 - **Human second coder** for the AI attribution calibration cases in [`ai-attribution/`](./ai-attribution/calibration-cases.md), starting with cases 2, 4 and 5, which carry a conflict of interest.
 - **Update the counters** of the OpenAI batch entry in `events/log.md` at each scheduled revision.
 - **Preregistration.** Candidate $AI_3$/$AI_4$ events before the freeze enlarge the P6 baseline; the freeze should not be delayed without reason.

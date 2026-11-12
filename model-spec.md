@@ -1,4 +1,4 @@
-# Saka Forecasting Engine — Model Specification v0.3.3
+# Saka Forecasting Engine — Model Specification v0.3.4
 
 ## 1. State vector
 

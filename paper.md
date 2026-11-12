@@ -1,7 +1,7 @@
 # The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity
 
 **Javier Carrasco ("Saka")**  
-Version 0.3.3 — 6 October 2026  
+Version 0.3.4 — 12 November 2026  
 Conceptual / forecasting paper — not peer reviewed
 
 ## Abstract
@@ -129,9 +129,29 @@ $$
 
 sustained while technology is materially increasing the productivity of research, design, experimentation, verification, manufacturing or deployment.
 
-In the idea-production form of Section 2, research productivity is $\dot{A}/R^{\lambda} = \delta A^{\phi}$. Historical estimates imply that this has been falling [6], i.e. that ideas have become harder to find. The Saka Law can therefore be stated as an estimable claim:
+In the idea-production form of Section 2, the growth rate of knowledge is $g_A = \dot{A}/A = \delta R^{\lambda} A^{\phi-1}$. Following Bloom et al. [6], **research productivity** is growth per unit of effective research input:
 
-> **Recursive acceleration holds in a domain when research productivity per unit of human and capital input stops declining and begins to rise—equivalently, when the effective feedback parameter $\phi$, re-estimated on rolling windows, trends upward, after automation of research inputs is accounted for.**
+$$
+\pi = \frac{g_A}{R^{\lambda}} = \delta A^{-\beta}, \qquad \beta = 1 - \phi,
+$$
+
+with $\lambda = 1$ in the baseline of [6]; the value of $\lambda$ is fixed at preregistration. Three regimes follow:
+
+- $\beta > 0$ ($\phi < 1$): productivity falls as knowledge accumulates, and constant growth requires ever more research input. This is what [6] reports, with $\beta \approx 0.2$ for Moore's law and $\beta \approx 3$ for the aggregate economy.
+- $\beta = 0$ ($\phi = 1$): productivity is constant, and constant research input gives constant exponential growth.
+- $\beta < 0$ ($\phi > 1$): productivity rises with the stock of knowledge, and the growth rate rises even at constant research input. This is the recursive regime.
+
+Two quantities must not be confused with $\pi$. First, idea output per unit of input, $\dot{A}/R^{\lambda} = \delta A^{\phi}$, rises whenever $\phi > 0$; it has been rising in semiconductors throughout the period in which $\pi$ fell, and is not evidence of recursion. Second, the growth rate itself obeys
+
+$$
+\frac{\dot{g}_A}{g_A} = \lambda\, g_R - \beta\, g_A,
+$$
+
+so $g_A$ can rise with $\beta > 0$ if the growth of research input accelerates. That is an investment boom, not recursion (Section 7.4). The Saka Law can therefore be stated as an estimable claim:
+
+> **Recursive acceleration holds in a domain when research productivity $\pi$, measured against total research input, stops declining and begins to rise—equivalently, when the effective $\beta$, re-estimated on rolling windows, turns negative ($\phi > 1$).**
+
+The sign change need not come from a change in $\phi$ as a deep parameter. In task-based models [9], automation lets capital and compute—themselves products of technology—supply part of effective research input, so that the cost of a unit of research falls. Measured against expenditure, as below, that appears as rising $\pi$.
 
 **Measuring $R$ when AI is a research input.** This condition is only testable if $R$ is defined so that automation cannot inflate measured productivity by construction. If AI systems replace researchers and $R$ counts only people, productivity rises mechanically even when nothing about the discovery process has improved. The framework therefore follows Bloom et al. [6], who measure effective research input as deflated R&D *expenditure*, and requires that expenditure to include compute, cloud services, model access and laboratory automation bought for research. Two variants are reported:
 
@@ -513,7 +533,7 @@ $$
 
 Population impact is then $P_j(T)$ multiplied by the class's projected $DAI_j$.
 
-In version 0.3.3, $\lambda_{0,j}$, $\alpha_j$ and $G_j$ are not estimated. Doing so requires the LTI transition data described in Section 10. This should be interpreted as technology-arrival forecasting, not as a personalized survival probability.
+In version 0.3.4, $\lambda_{0,j}$, $\alpha_j$ and $G_j$ are not estimated. Doing so requires the LTI transition data described in Section 10. This should be interpreted as technology-arrival forecasting, not as a personalized survival probability.
 
 ---
 
@@ -562,7 +582,7 @@ A reasonable scenario family for FTAF should include:
 - **central:** sustained AI/science acceleration with progressively declining growth rates;
 - **aggressive:** major breakthroughs in AI, automation, energy or manufacturing that extend the high-growth regime.
 
-Version 0.3.3 does not attach numbers to these scenarios. They will be quantified once the proxies of Section 7.1 have been populated.
+Version 0.3.4 does not attach numbers to these scenarios. They will be quantified once the proxies of Section 7.1 have been populated.
 
 The central qualitative expectation for 2046 is not "immortality". It is increased probability of:
 
@@ -603,7 +623,7 @@ The framework therefore treats "systemic rejuvenation" and "longevity escape vel
 
 The qualitative predictions of version 0.1 are replaced by dated, quantitative ones.
 
-**This version is not the preregistration.** Version 0.3.3 fixes the *form* of each prediction and the rule for deriving its threshold, but not the thresholds themselves. The preregistration is made when that rule has been applied to historical data and the resulting numbers are frozen, with a timestamp, in a public file (planned: `forecasts/preregistration-2026.json`), before any data from the tested windows are examined.
+**This version is not the preregistration.** Version 0.3.4 fixes the *form* of each prediction and the rule for deriving its threshold, but not the thresholds themselves. The preregistration is made when that rule has been applied to historical data and the resulting numbers are frozen, with a timestamp, in a public file (planned: `forecasts/preregistration-2026.json`), before any data from the tested windows are examined.
 
 **Windows.** Each window starts on the date the preregistration is frozen, not on 1 January 2026; data observed before that date are used only to estimate baselines. The window labels below (2026–2031, 2026–2036) are nominal and assume a freeze in late 2026.
 
@@ -807,6 +827,10 @@ The hypothesis will become scientifically useful only if its metrics are populat
 29. Wright, T. P. **Factors affecting the cost of airplanes.** _Journal of the Aeronautical Sciences_ 3(4), 122–128 (1936).
 
 ---
+
+## Correction in version 0.3.4
+
+- **Section 4, definition of research productivity.** Version 0.3.3 wrote research productivity as $\dot{A}/R^{\lambda} = \delta A^{\phi}$ and called a rising $\phi$ "equivalent" to rising productivity. The quantity measured in [6] is growth per unit of input, $g_A/R^{\lambda} = \delta A^{\phi-1}$. The condition for recursive acceleration is now $\beta = 1-\phi < 0$, which is consistent with the super-exponential signature stated earlier in the section and with P3. No prediction changes.
 
 ## Changes from version 0.3.2
 

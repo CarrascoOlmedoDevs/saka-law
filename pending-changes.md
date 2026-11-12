@@ -2,7 +2,7 @@
 
 Changes of method agreed since the last version. They enter `paper.md` and `model-spec.md` only at the next scheduled revision. External events are recorded in [`events/log.md`](./events/log.md), not here.
 
-Items 1–10 were merged into **v0.3.3** on 6 October 2026; see "Changes from version 0.3.2" at the end of `paper.md`. Numbering continues from there.
+Items 1–10 were merged into **v0.3.3** on 6 October 2026; see "Changes from version 0.3.2" at the end of `paper.md`. Numbering continues from there. **v0.3.4** (12 November 2026) is a correction of Section 4 only, released under the rule on factual errors below; it merges none of the items in this file.
 
 ## Release policy
 
@@ -72,6 +72,28 @@ Each AI-originated discovery records a **feedback channel** (which part of the t
 - Use **AI-involved programmes as the treatment group** and conventional programmes in the same therapeutic area, modality, regulatory route and period as the comparison group (baseline list in `data/ai-drug-pipeline.csv`). Technological acceleration is the *difference* between the groups under the same rules; a fall in both reflects regulation.
 - Track **post-approval outcomes**: withdrawals, new boxed warnings and failed confirmatory trials, by regulatory route. A rise in these offsets any gain in P8.
 - Classify regulatory changes that are themselves **enabled by technology** (e.g. replacing animal tests with organoids or in-silico models; accepting digital-twin controls) separately: these count as technological acceleration, because the technology is what made the rule change possible.
+
+## 17. Test acceleration only on ratio-scale series
+
+**Motivation (12 Nov 2026):** review of v0.3.3. The signature $d^2 \ln T/dt^2 > 0$ is not invariant to a monotone re-scaling of $T$: a series that is exponential in one unit is linear in its logarithm, and a bounded benchmark score saturates whatever the underlying capability does. The composite $A$ mixes unbounded measures (METR time horizon) with bounded scores (benchmark accuracy, share of statements proved), so the curvature of $\ln O_t$ in P2 depends on normalization choices.
+
+**Change:**
+
+- P2 is tested only on components with **ratio-scale units**: cost, time, density, counts, mass, energy. For these, a growth rate has a meaning independent of the analyst.
+- Bounded scores enter in one of two ratio-scale forms: the **date at which a fixed threshold is reached** (intervals between successive thresholds shortening), or the **cost of a fixed capability level**. Raw scores are reported descriptively and excluded from $g_O$.
+- For each tested component, the sign of the estimated curvature must hold under a preregistered set of transformations (log; logit for any bounded series kept as a robustness check). A sign that depends on the transformation is reported as inconclusive.
+- P2 is reported per component as well as for $O_t$ and $\Pi_t$, so that one component cannot carry the aggregate.
+
+## 18. P7: replace median IND-to-approval time with identifiable estimands
+
+**Motivation (12 Nov 2026):** review of v0.3.3. Only about one programme in seven entering Phase I is approved [21], so the cumulative incidence of approval never reaches 50% and a Kaplan–Meier **median** time from IND to approval does not exist for a cohort of INDs. Treating failures as censored would make it exist but would estimate a different, biased quantity. In addition, IND cohorts from the test window are almost all unresolved when the window closes. The same problem affects the proxy for $L$ (Section 7.1).
+
+**Change:**
+
+- **Primary:** phase-transition durations $L_4 \rightarrow L_5$, $L_5 \rightarrow L_6$, $L_6 \rightarrow L_7$ from the multistate model already specified for P8, with failure as a competing state (Aalen–Johansen). These are observable within the window. P7 passes if the duration of at least one transition falls by the preregistered amount in at least one stratum, with no fall in the corresponding transition probability.
+- **Secondary:** cumulative incidence of approval at a fixed horizon after IND (for example 8 years), and a subdistribution hazard ratio (Fine–Gray) between window and 2015–2025 cohorts. Marked exploratory if the power analysis shows the window is too short.
+- **Proxy for $L$:** inverse of the summed median phase-transition durations, replacing "inverse of median time from IND filing to approval".
+- Item 16 (regulatory route, AI-involved vs conventional programmes) applies unchanged to these estimands.
 
 ---
 

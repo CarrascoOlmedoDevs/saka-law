@@ -4,7 +4,7 @@
 
 **A framework for measuring recursive technological acceleration and its implications for biomedical longevity**
 
-Version 0.3.3 — 6 October 2026
+Version 0.3.4 — 12 November 2026
 
 This repository contains a conceptual forecasting paper developed around a proposed idea called the **Saka Law of Recursive Technological Acceleration**.
 
@@ -33,7 +33,7 @@ The longevity component asks a narrower question: **can medical progress increas
 
 - [paper.md](./paper.md) — full conceptual paper.
 - [model-spec.md](./model-spec.md) — equations, variables, proposed update procedure and candidate data sources (Section 13).
-- [Saka_Law_v0.3.3.pdf](./Saka_Law_v0.3.3.pdf) — PDF of the paper with the specification as appendix.
+- [Saka_Law_v0.3.4.pdf](./Saka_Law_v0.3.4.pdf) — PDF of the paper with the specification as appendix.
 - [pending-changes.md](./pending-changes.md) — release policy, changes of method agreed since the last version, and open items.
 - [data/](./data) — tracking datasets, starting with a baseline of AI-involved drug candidates (comparison group for P7/P8).
 - [verification/](./verification) — independent partial checks of external results (first: OpenAI family 003, quasi-Riemann hypothesis).
@@ -65,9 +65,13 @@ saka-law/
 
 For now cite as:
 
-**Carrasco, J. (Saka). (2026). _The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity_. Version 0.3.3. Zenodo. https://doi.org/10.5281/zenodo.23189655**
+**Carrasco, J. (Saka). (2026). _The Saka Law: Measuring Recursive Technological Acceleration and Its Implications for Biomedical Longevity_. Version 0.3.4. Zenodo. https://doi.org/10.5281/zenodo.23092957**
 
-To cite the latest version instead of this specific one, use the concept DOI [10.5281/zenodo.23092957](https://doi.org/10.5281/zenodo.23092957).
+This is the concept DOI, which always resolves to the latest version. Version 0.3.3 is [10.5281/zenodo.23189655](https://doi.org/10.5281/zenodo.23189655).
+
+## What changed in v0.3.4 (correction)
+
+- Section 4 defined research productivity with the wrong formula. It is now growth per unit of research input, as in Bloom et al. (2020), and the condition for recursive acceleration is stated to match. No prediction changes.
 
 ## What changed in v0.3.3
 
